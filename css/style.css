@@ -10,6 +10,7 @@ body{
   font-family: "Outfit", sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
+  margin-bottom: 50px;
 }
 
 button, input{
@@ -367,27 +368,45 @@ main{
   }
 
   .blog-grid .blog-item{
-
     --width: 100%;
-    
   }
 
 }
 
-@media (max-width: calc( 700px ) ) {
+@media (max-width: 480px ) {
+
+  .blog-wrapper{
+    position: relative;
+  }
   
-  .blog-wrapper .blog-grid{
+  .blog-wrapper .blog-headbar{
     display: flex;
-    /* align-items: center; */
-    flex-direction: column;
-    gap: 20px;
+    justify-content: space-between;
+    align-items: center;
   }
 
-  .blog-grid .blog-item{
 
-    --width: 100%;
-    
+  .blog-wrapper .blog-headbar .blog-title h2{
+    font-size: 30px;
   }
 
+  .blog-wrapper .blog-headbar .blog-title h3{
+    font-size: 18px;
+  }
+
+  .blog-wrapper .blog-headbar .blog-filter{
+    position: absolute;
+    bottom: -20px;
+    left: 50px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .blog-wrapper .blog-headbar .blog-filter button#blog-next{
+    font-size: 16px;
+    flex-wrap: nowrap;
+    padding: 4px;
+  }
 }
 
