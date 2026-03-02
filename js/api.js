@@ -15,8 +15,6 @@ export async function getPosts() {
     }
 
     const data = await res.json();
-
-    console.log(data, data.posts);
     
     return data.posts;
   }

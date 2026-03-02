@@ -42,25 +42,27 @@
 
     <section class="fetch-blog">
       <div class="blog-wrapper">
-        <div class="blog-title">
-          <h2>Experiences Recap</h2>
-          <h3>A diary for myself...</h3>
+        <div class="blog-headbar">
+          <div class="blog-title">
+            <h2>Experiences Recap</h2>
+            <h3>A diary for myself...</h3>
+          </div>
+          <div class="blog-filter">
+            <input type="number" name="blog-page" id="blog-page" min="1">
+            <button type="button" id="blog-next">
+              <div class="button-hover">
+                ➨
+              </div>
+              <div class="button-title">
+                Next Page
+              </div>
+            </button>
+          </div>
         </div>
         <div class="blog-grid">
         </div>
       </div>
     </section>
-
-    <!-- `<div class="blog_item">
-      <div class="main_image" style="--bg:"${post.feature_image}"">
-          <h3>${post.title}</h3>
-      </div>
-      <div class="text">
-        <div class="desc">
-          ${post.html}
-        </div>
-      </div>
-    </div>` -->
 
   </main>
   <script type="module" src="js/blog.js"></script>
