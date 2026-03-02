@@ -408,5 +408,25 @@ main{
     flex-wrap: nowrap;
     padding: 4px;
   }
+
+  .blog-wrapper .blog-headbar .blog-filter button#blog-next:hover{
+
+    transform: scale(1.05);
+    border: none;
+
+    &>.button-hover{
+      translate: 40px 0px;
+    }
+
+    &>.button-title{
+      translate: 80px 0px;
+      color: white;
+    }
+
+    &::before{
+      translate: 0px 0px;
+    }
+
+  }
 }
 
