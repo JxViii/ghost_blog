@@ -1,7 +1,12 @@
 :root{
+  --black: #1f1f1f;
+  --light-x: #40555a;
+  --dark-x: #001114;
+  --x: #0a3e47;
   --light-grey: #4a4a4a;
   --dark_blue: #000d26;
   --dark_white: #eeeeee;
+  --date-tag-bg: #45b264;
 }
 
 body{
@@ -11,6 +16,7 @@ body{
   font-optical-sizing: auto;
   font-style: normal;
   margin-bottom: 50px;
+  color: var(--black);
 }
 
 button, input{
@@ -18,6 +24,7 @@ button, input{
   font-optical-sizing: auto;
   font-style: normal;
   font-weight: bold;
+  color: var(--dark_blue);
 }
 
 h1,h2,h3,p{
@@ -34,7 +41,7 @@ main{
   display: flex;
   flex-direction: column;
   gap: 20px;
-  padding: 40px;
+  padding: 20px 40px;
 
 }
 
@@ -50,7 +57,7 @@ main{
 .intro-grid .intro-title h2{
   font-weight: 700;
   font-size: 32px;
-  color: var(--light-grey);
+  color: var(--light-x);
 }
 
 .intro-grid .intro-desc{
@@ -58,14 +65,14 @@ main{
   flex-direction: column;
   gap: 15px;
   line-height: 1.5;
-  padding: 15px 20px;
-  background-color: var(--dark_white);
-  border-radius: 20px;
+  padding: 0px 20px;
+  border-left: 3px solid var(--x);
 }
 
 .intro-grid .intro-desc p{
   font-size: 1.2rem;
   text-align: left;
+  color: var(--dark-x);
 }
 
 /* SUBTLE BLOG GRID */
@@ -195,7 +202,7 @@ main{
 
 .blog-wrapper h3{
   font-size: 20px;
-  color: var(--light-grey);
+  color: var(--light-x);
 }
 
 .blog-wrapper .blog-grid{
@@ -288,7 +295,7 @@ main{
 
   border-radius: 10px;
 
-  background-color: #47b466;
+  background-color: var(--date-tag-bg);
 }
 
 .blog-grid .blog-item .main-image .date-tag h3{
@@ -428,5 +435,10 @@ main{
     }
 
   }
+
+  .blog-grid .blog-item .blog-info .blog-desc p{
+    width: calc(var(--width) - 20px);
+  }
+
 }
 
