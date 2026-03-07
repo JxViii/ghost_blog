@@ -449,6 +449,123 @@ hr.header-posts {
     height: 6px;
   }
 
+  .headbar .headbar-options .filter .filter-grid .filter-item .filter-tag-menu, .headbar .headbar-options .filter .filter-grid .filter-item .filter-date-menu{
+    top: 40px;
+  }
+
+  .headbar .headbar-options .filter .filter-grid .filter-item .filter-tag-menu{
+
+    width: calc(100% + 20px);
+    overflow: hidden;
+    background: var(--light-grey2);
+    border: 1px solid var(--light-light-grey);
+    border-radius: 8px;
+    padding: 4px 10px;
+
+    display: none;
+    opacity: 0;
+    z-index: 3;
+    transition: opacity .5s ease;
+
+  }
+
+  .headbar .headbar-options .filter .filter-grid .filter-item .filter-tag-menu input{
+
+    width: 100%;
+    font-size: 10px;
+    padding: 0px 4px;
+    padding-bottom: 7px;
+    border-radius: 0;
+    border: none;
+    border-bottom: 1px solid var(--light-light-grey);
+    color: var(--light-light-grey);
+
+  }
+
+  .headbar .headbar-options .filter .filter-grid .filter-item .filter-tag-menu input:focus-visible{
+    outline: none;
+  }
+
+  .headbar .headbar-options .filter .filter-grid .filter-item .filter-tag-menu ul{
+
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+    margin-top: 5px;
+    gap: 2px;
+    max-height: 120px;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+  }
+
+  .filter-tag-menu ul::-webkit-scrollbar {
+    width: 6px;
+    height: 95%;
+    border-radius: 10px;
+  }
+
+  .filter-tag-menu ul::-webkit-scrollbar-thumb {
+    background: var(--light-light-grey);
+    border-radius: 5px;
+  }
+
+
+  .headbar .headbar-options .filter .filter-grid .filter-item .filter-tag-menu ul li{
+
+    font-size: 11px;
+    padding: 3px 2px;
+    border-radius: 5px;
+    margin-right: 8px;
+    display: none;
+
+    cursor: pointer;
+
+  }
+
+  .filtered{
+
+    background: var(--light-light-blue);
+    color: var(--black);
+    font-weight: bold;
+
+  }
+
+  .headbar .headbar-options .filter .filter-grid .filter-item .filter-tag-menu ul li:hover{
+
+    background: var(--light-grey);
+
+  }
+
+  .headbar .headbar-options .filter .filter-grid .filter-item .filter-date-menu{
+
+    max-width: 100%;
+    width: 100%;
+    overflow: hidden;
+    background: var(--light-grey2);
+    border: 1px solid var(--light-light-grey);
+    border-radius: 8px;
+    padding: 2px 0px;
+    
+
+    display: none;
+    opacity: 0;
+    z-index: 3;
+    transition: opacity .5s ease;
+
+  }
+
+  .headbar .headbar-options .filter .filter-grid .filter-item .filter-date-menu .filter-date-menu-item{
+
+    width: 70%;
+    font-size: 11px;
+    margin: 7px auto;
+    padding: 4px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
   hr{
     margin: 0;
   }
