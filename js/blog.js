@@ -1,139 +1,134 @@
-import {getPosts} from "./api.js"
-import {getDate, getTags} from "./auxiliar.js"
+import { getPosts } from "./api.js";
+import { getDate, getTags } from "./auxiliar.js";
 
+const state = {
+  posts: [],
+  page: 1,
+  perPage: 6,
+};
 
-async function getVPosts(){
-  const all_posts = await getPosts();
+const postGrid = document.querySelector(".blog-grid");
+const pageInput = document.getElementById("blog-page");
+const nextButton = document.getElementById("blog-next");
 
-  return all_posts;
+function getTotalPages() {
+  return Math.max(1, Math.ceil(state.posts.length / state.perPage));
 }
 
-async function loadPosts(){
+function clampPage(page) {
+  const totalPages = getTotalPages();
+  return Math.min(Math.max(1, Number(page) || 1), totalPages);
+}
 
-  // GetPosts() and load them
-  const all_posts = await getVPosts();
-  const n_posts = all_posts.length;
+function getPaginatedPosts() {
+  const start = (state.page - 1) * state.perPage;
+  const end = start + state.perPage;
+  return state.posts.slice(start, end);
+}
 
-  console.log(all_posts);
+function clearBlog() {
+  postGrid.innerHTML = "";
+}
 
-  if(cap >= n_posts) cap = n_posts;
-  if(start >= cap){
-    if(cap < total) start = 0;
-    else start = cap - total;
-  }
+function createPost(post) {
+  const dateTag = getDate(post);
+  const tagsMarkup = getTags(post.tags)
+    .map(
+      (tag) => `
+        <div class="tag">
+          <h3>${tag}</h3>
+        </div>`
+    )
+    .join("");
 
-  const posts = all_posts.slice(start,cap);
-  const postGrid = document.querySelector(".blog-grid");
-  let i = 0;
-
-  posts.forEach(post => {
-
-    const date_tag = getDate(post);
-
-    const post_tags = post.tags;
-    const tags = getTags(post_tags);
-
-    postGrid.insertAdjacentHTML("beforeend",`<div class="blog-item" id="${post.id}" style="--bg: url(${post.feature_image})">
+  return `
+    <article class="blog-item" data-url="${post.url}" style="--bg: url(${post.feature_image})">
       <div class="main-image">
         <div class="date-tag">
-          <h3>${date_tag}</h3>
+          <h3>${dateTag}</h3>
         </div>
-          <h3>${post.title}</h3>
+        <h3>${post.title}</h3>
       </div>
       <div class="blog-info">
-        <div class="blog-tags">
-        </div>
+        <div class="blog-tags">${tagsMarkup}</div>
         <div class="blog-desc">
           <p>${post.excerpt}</p>
         </div>
       </div>
-    </div>`);
-
-    const blog_tags = postGrid.querySelectorAll(".blog-tags");
-    tags.forEach(tag => {
-
-      blog_tags[i].innerHTML += `
-        <div class="tag">
-          <h3>${tag}</h3>
-        </div>
-      `
-
-    })
-
-    const l_post = document.getElementById(post.id);
-
-    l_post.addEventListener("click", () => {
-      window.open(`${post.url}`, "_blank", "noopener,noreferrer");
-    })
-
-    ++i;
-
-  });
-
+    </article>`;
 }
 
-function clearBlog(){
-  const postGrid = document.querySelector(".blog-grid");
-
-  postGrid.innerHTML=""
-}
-
-async function getPage(page){
-
-  const posts = await getVPosts();
-  const n = Math.ceil(posts.length / total);
-
-  if(page > n) page = n;
-  else if(page < 1) page = 1;
-  cap = total * page;
-  start = cap - total;
-
-  blog_page.placeholder=`${page}`;
-  blog_page.value=`${page}`;
-
-  console.log(n, blog_page.placeholder, blog_page.value);
-
+function renderPosts() {
   clearBlog();
-  loadPosts();
 
+  const visiblePosts = getPaginatedPosts();
+
+  if (!visiblePosts.length) {
+    postGrid.innerHTML = `<p class="blog-empty">No posts found.</p>`;
+    return;
+  }
+
+  const posts = visiblePosts.map(createPost).join("");
+  postGrid.insertAdjacentHTML("beforeend", posts);
 }
 
-function nextPage(){
-  page++;
-  getPage(page);
+// sync the pagination button
+function syncPaginationUI() {
+  const totalPages = getTotalPages();
+  pageInput.max = String(totalPages);
+  pageInput.value = String(state.page);
+  pageInput.placeholder = String(state.page);
+  nextButton.disabled = state.page >= totalPages;
 }
 
-async function setMaxPage(){
-
-  const posts = await getVPosts();
-  const n_posts = posts.length;
-
-  const pages = Math.ceil(n_posts / cap);
-  blog_page.max = `${pages}`;
-
+function updateView() {
+  state.page = clampPage(state.page);
+  renderPosts();
+  syncPaginationUI();
 }
 
-let page = 1;
-let total = 6;
-let start = 0
-let cap = 0;
+function goToPage(page) {
+  state.page = clampPage(page);
+  updateView();
+}
 
-const blog_page = document.getElementById("blog-page");
+function goToNextPage() {
+  goToPage(state.page + 1);
+}
 
-const next_button = document.getElementById("blog-next");
-next_button.addEventListener("click", () => {
-  nextPage();
-});
+function setUpPagination() {
+  nextButton.addEventListener("click", goToNextPage);
 
-const page_input = document.getElementById("blog-page");
-page_input.addEventListener("keydown", (event) => {
-  
-  if(event.key === "Enter") getPage(page_input.value);
+  pageInput.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+      goToPage(pageInput.value);
+    }
+  });
+}
 
-});
+function setUpPostURLS() {
+  postGrid.addEventListener("click", (event) => {
+    const postItem = event.target.closest(".blog-item");
+    if (!postItem) return;
 
-document.addEventListener("DOMContentLoaded", () => {
-  setMaxPage();
-})
+    const { url } = postItem.dataset;
+    if (!url) return;
 
-getPage(page);
+    window.open(url, "_blank", "noopener,noreferrer");
+  });
+}
+
+async function main() {
+  try {
+    const posts = await getPosts();
+    state.posts = Array.isArray(posts) ? posts : [];
+    updateView();
+  } catch (error) {
+    console.error("Could not initialize blog:", error);
+    postGrid.innerHTML = `<p class="blog-empty">Could not load posts.</p>`;
+  }
+}
+
+setUpPagination();
+setUpPostURLS();
+main();

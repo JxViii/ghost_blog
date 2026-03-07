@@ -44,6 +44,7 @@ main{
 
 .displayed{
   display: block !important;
+  opacity: 1 !important;
 }
 
 .manager-grid{
@@ -156,19 +157,21 @@ main{
   width: calc(100% + 40px);
   overflow: hidden;
   background: var(--light-grey2);
-  border: 1px solid var(--light-grey3);
-  border-radius: 10px;
+  border: 1px solid var(--light-light-grey);
+  border-radius: 8px;
   padding: 8px 15px;
 
   display: none;
+  opacity: 0;
   z-index: 3;
+  transition: opacity .5s ease;
 
 }
 
 .headbar .headbar-options .filter .filter-grid .filter-item .filter-tag-menu input{
 
   width: 100%;
-  font-size: 14px;
+  font-size: 16px;
   padding: 0px 8px;
   padding-bottom: 7px;
   border-radius: 0;
@@ -176,6 +179,10 @@ main{
   border-bottom: 1px solid var(--light-light-grey);
   color: var(--light-light-grey);
 
+}
+
+.headbar .headbar-options .filter .filter-grid .filter-item .filter-tag-menu input:focus-visible{
+  outline: none;
 }
 
 .headbar .headbar-options .filter .filter-grid .filter-item .filter-tag-menu ul{
@@ -206,7 +213,7 @@ main{
 
 .headbar .headbar-options .filter .filter-grid .filter-item .filter-tag-menu ul li{
 
-  font-size: 14px;
+  font-size: 15px;
   padding: 3px 10px;
   border-radius: 5px;
   margin-right: 8px;
@@ -216,7 +223,7 @@ main{
 
 }
 
-.headbar .headbar-options .filter .filter-grid .filter-item .filter-tag-menu ul li.filtered{
+.filtered{
 
   background: var(--light-light-blue);
   color: var(--black);
@@ -230,6 +237,38 @@ main{
 
 }
 
+.headbar .headbar-options .filter .filter-grid .filter-item .filter-date-menu{
+
+  max-width: 100%;
+  width: 100%;
+  overflow: hidden;
+  background: var(--light-grey2);
+  border: 1px solid var(--light-light-grey);
+  border-radius: 8px;
+  padding: 2px 0px;
+  
+
+  display: none;
+  opacity: 0;
+  z-index: 3;
+  transition: opacity .5s ease;
+
+}
+
+.headbar .headbar-options .filter .filter-grid .filter-item .filter-date-menu .filter-date-menu-item{
+
+  width: 70%;
+  margin: 7px auto;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.headbar .headbar-options .filter .filter-grid .filter-item .filter-date-menu .filter-date-menu-item:hover{
+
+  background: var(--light-grey);
+
+}
 
 hr.header-posts {
   display: block;
@@ -247,7 +286,7 @@ hr.header-posts {
 
   display: grid;
   grid-template-columns: 50% 50%;
-  gap: 5px;
+  gap: 20px;
 
 }
 
@@ -304,6 +343,7 @@ hr.header-posts {
 .posts .posts-grid .post-item .post-grid .post-info p{
 
   font-size: 16px;
+  color: var(--light-light-blue);
   font-style: italic;
 
 }

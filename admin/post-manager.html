@@ -27,6 +27,7 @@
                       type="text" 
                       id="filter-title" 
                       placeholder="Search by title..."
+                      autocomplete="off"
                     >
                   </div>
                   <div class="filter-item">
@@ -35,19 +36,19 @@
                       <svg viewBox="0 0 26 17"><path d="M1.469 2.18l11.5 13.143 11.5-13.143" stroke-width="4" stroke="#0B0B0A" fill="none" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                     </button>
                     <div class="filter-tag-menu">
-                      <input type="search" class="filter-tag-search" placeholder="Search tags...">
+                      <input type="search" class="filter-tag-search" id="filter-tag-search" placeholder="Search tags...">
                       <ul class="filter-tag-options">
                       </ul>
                     </div>
                   </div>
                   <div class="filter-item">
                     <button class="filter-button "id="filter-date">
-                      Newest first
+                      <div class="filter-opt">Newest first</div>
                       <svg viewBox="0 0 26 17"><path d="M1.469 2.18l11.5 13.143 11.5-13.143" stroke-width="4" stroke="#0B0B0A" fill="none" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                     </button>
                     <div class="filter-date-menu">
-                      <div class="filter-date-menu-item">Newest first</div>
-                      <div class="filter-date-menu-item">Oldest first</div>
+                      <div class="filter-date-menu-item " id="newest">Newest first</div>
+                      <div class="filter-date-menu-item" id="oldest">Oldest first</div>
                     </div>
                   </div>
                 </div>
@@ -67,7 +68,7 @@
         </section>
 
       </div>
-    </div
+    </div>
   </main>
 
   <script type="module" src="/js/post-manager.js"></script>

@@ -2,8 +2,7 @@ function getMonth(number){
 
   if(number < 1 || number > 12) return -1;
 
-  const months = ["Jan", "Feb", "Mar", "Apr", "May", "June",
-            "July", "Aug", "Sep", "Oct", "Nov", "Dec"
+  const months = ["Jan", "Feb", "Mar", "Apr", "May", "June","July", "Aug", "Sep", "Oct", "Nov", "Dec"
   ]
 
   return months[number-1];
@@ -25,7 +24,6 @@ export function getDate(post){
   return date_tag;
 }
 
-
 export function getTags(v_tags){
 
   const tags = [];
@@ -44,13 +42,19 @@ export function getAllTags(v_posts){
   v_posts.forEach(post => {
 
     post.tags.forEach(tag => {
-      if( contains(tag.name, tags) === -1)
+      if( contains(tag.name, tags) === -1 )
         tags.push(tag.name);
     })
 
   })
 
   return tags;
+
+}
+
+export function getMainAuthor(authors){
+
+  return authors[0].name;
 
 }
 
@@ -64,13 +68,3 @@ export function contains(x, v){
 
 }
 
-export function startsWith(str, tag){
-
-  const tag_name = tag.toLowerCase();
-
-  if(tag_name.slice(0,str.length) === str)
-    return true;
-
-  return false
-
-}

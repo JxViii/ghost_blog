@@ -4,7 +4,7 @@ const base_url = "https://jxviii.ghost.io"
 export async function getPosts() {
 
   // Todos los posts
-  const url = `${base_url}/ghost/api/content/posts/?key=${SUPER_SAFE_API_KEY}&include=tags`;
+  const url = `${base_url}/ghost/api/content/posts/?key=${SUPER_SAFE_API_KEY}&include=tags&include=authors`;
 
   try{
     const res = await fetch(url);
@@ -15,6 +15,8 @@ export async function getPosts() {
     }
 
     const data = await res.json();
+    
+    console.log(data.posts);
     
     return data.posts;
   }
