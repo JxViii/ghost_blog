@@ -438,7 +438,7 @@ hr.header-posts {
 
   .headbar .headbar-options .filter .filter-grid .filter-item input, .headbar .headbar-options .filter .filter-grid .filter-item button{
     padding: 7px 12px;
-    font-size: 12px;
+    font-size: 11px;
   }
 
   .headbar .headbar-options .filter .filter-grid .filter-item button{
@@ -467,6 +467,8 @@ hr.header-posts {
     padding: 5px;
     gap: 8px;
 
+    
+
   }
 
   .posts .posts-grid .post-item .post-grid .post-info .post-title{
@@ -482,7 +484,7 @@ hr.header-posts {
   .posts .posts-grid .post-item .post-grid .post-info .post-tags .post-tag{
 
     padding: 2px 5px;
-    font-size: 12px;
+    font-size: 10px;
 
   }
 
