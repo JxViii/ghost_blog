@@ -416,3 +416,74 @@ hr.header-posts {
   }
 
 }
+
+@media (max-width: 480px){
+
+  .manager-grid{
+    padding: 20px;
+    gap: 0px;
+  }
+
+  .headbar{
+    margin: 0 5px;
+  }
+
+  .headbar button#new-post{
+    font-size: 14px;
+  }
+
+  .headbar .headbar-options .filter .filter-grid .filter-item input{
+    width: 120px;
+  }
+
+  .headbar .headbar-options .filter .filter-grid .filter-item input, .headbar .headbar-options .filter .filter-grid .filter-item button{
+    padding: 7px 12px;
+    font-size: 12px;
+  }
+
+  .headbar .headbar-options .filter .filter-grid .filter-item button{
+    gap: 4px;
+  }
+
+  .headbar .headbar-options .filter .filter-grid .filter-item button svg{
+    height: 6px;
+  }
+
+  hr{
+    margin: 0;
+  }
+
+  .posts .posts-grid .post-item .post-grid{
+
+    --width: 150px;
+
+    padding: 5px;
+    gap: 20px;
+  }
+
+  .posts .posts-grid .post-item .post-grid .post-info{
+
+    height: 70%;
+    padding: 5px;
+    gap: 8px;
+
+  }
+
+  .posts .posts-grid .post-item .post-grid .post-info .post-title{
+    font-size: 18px;
+  }
+
+  .posts .posts-grid .post-item .post-grid .post-info p{
+
+    font-size: 13px;
+
+  }
+
+  .posts .posts-grid .post-item .post-grid .post-info .post-tags .post-tag{
+
+    padding: 2px 5px;
+    font-size: 12px;
+
+  }
+
+}
