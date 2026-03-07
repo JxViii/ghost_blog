@@ -433,7 +433,7 @@ hr.header-posts {
   }
 
   .headbar .headbar-options .filter .filter-grid .filter-item input{
-    width: 120px;
+    width: 90px;
   }
 
   .headbar .headbar-options .filter .filter-grid .filter-item input, .headbar .headbar-options .filter .filter-grid .filter-item button{
@@ -475,7 +475,7 @@ hr.header-posts {
 
   .posts .posts-grid .post-item .post-grid .post-info p{
 
-    font-size: 13px;
+    font-size: 11px;
 
   }
 
