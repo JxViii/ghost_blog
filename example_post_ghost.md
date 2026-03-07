@@ -109,7 +109,7 @@ twitter_title
 null
 updated_at
 : 
-"2026-03-01T18:23:48.000+00:00"
+"2026-03-01T18:23:48.000+00:00
 url
 : 
 "https://jxviii.ghost.io/blog-sample/"
@@ -119,3 +119,9 @@ uuid
 visibility
 : 
 "public"
+
+<!-- 
+
+ -->
+
+"El lunes por la tarde de esta misma semana, 2 de marzo, me llegaba un mensaje de Juli diciéndome que si le podía cubrir un evento que iban a celebrar en una escuelilla de Alcalá de Guadaira. Le respondí que no tenía problema ninguno, y que allí estaría. Esto nos lleva a llegar a escribir este blog.\n\nSiendo claros, ha sido la mejor experiencia que he tenido con colegios hasta el momento, de lejos. Primero de todo, el que había organizado esto era Alberto Murillo, árbitro cordobés de categoría Aso"

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Post manager</title>
+    
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=BBH+Bartle&family=BBH+Bogle&family=BBH+Hegarty&family=Bebas+Neue&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/post-manager.css">
+</head>
+<body>
+  
+  <main class="manager">
+    <div class="manager-wrapper">
+      <div class="manager-grid">
+
+        <section class="headbar">
+          <h1>Posts</h1>
+          <div class="headbar-options">
+            <div class="filter">
+              <div class="filter-wrapper">
+                <div class="filter-grid">
+                  <div class="filter-item">
+                    <input 
+                      type="text" 
+                      id="filter-title" 
+                      placeholder="Search by title..."
+                    >
+                  </div>
+                  <div class="filter-item">
+                    <button class="filter-button" id="filter-tag">
+                      All Tags
+                      <svg viewBox="0 0 26 17"><path d="M1.469 2.18l11.5 13.143 11.5-13.143" stroke-width="4" stroke="#0B0B0A" fill="none" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                    </button>
+                    <div class="filter-tag-menu">
+                      <input type="search" class="filter-tag-search" placeholder="Search tags...">
+                      <ul class="filter-tag-options">
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="filter-item">
+                    <button class="filter-button "id="filter-date">
+                      Newest first
+                      <svg viewBox="0 0 26 17"><path d="M1.469 2.18l11.5 13.143 11.5-13.143" stroke-width="4" stroke="#0B0B0A" fill="none" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                    </button>
+                    <div class="filter-date-menu">
+                      <div class="filter-date-menu-item">Newest first</div>
+                      <div class="filter-date-menu-item">Oldest first</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button id="new-post">New Post</button>
+          </div>
+        </section>
+
+        <hr class="header-posts">
+
+        <section class="posts">
+          <div class="posts-wrapper">
+            <div class="posts-grid">
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </div
+  </main>
+
+  <script type="module" src="/js/post-manager.js"></script>
+</body>
+</html>

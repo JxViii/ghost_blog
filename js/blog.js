@@ -14,6 +14,8 @@ async function loadPosts(){
   const all_posts = await getVPosts();
   const n_posts = all_posts.length;
 
+  console.log(all_posts);
+
   if(cap >= n_posts) cap = n_posts;
   if(start >= cap){
     if(cap < total) start = 0;
@@ -26,10 +28,7 @@ async function loadPosts(){
 
   posts.forEach(post => {
 
-    const post_time = post.published_at.split('T');
-    const date = post_time[0].split('-');
-
-    const date_tag = getDate(date);
+    const date_tag = getDate(post);
 
     const post_tags = post.tags;
     const tags = getTags(post_tags);

@@ -1,8 +1,8 @@
 :root{
   --black: #1f1f1f;
   --light-x: #40555a;
-  --dark-x: #001114;
-  --x: #0a3e47;
+  --dark-x: #050014;
+  --x: #030017;
   --light-grey: #4a4a4a;
   --dark_blue: #000d26;
   --dark_white: #eeeeee;
@@ -177,7 +177,7 @@ main{
   padding: 4px;
   text-align: center;
   border: none;
-  border-bottom: 2px solid var(--dark_blue);
+  border-bottom: 3px solid var(--dark_blue);
   font-size: 16px;
 
   height: 26px;
@@ -381,6 +381,11 @@ main{
 }
 
 @media (max-width: 480px ) {
+
+  .intro-grid .intro-desc{
+    padding: 0px;
+    border-left: none;
+  }
 
   .blog-wrapper{
     position: relative;
