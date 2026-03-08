@@ -64,6 +64,10 @@ main{
 
 }
 
+.editor-grid .editor-feature-image button#feature-image-button:hover{
+  color: var(--white);
+}
+
 .editor-grid .editor-title input#editor-title{
 
   background: none;
