@@ -1,10 +1,7 @@
-const SUPER_SAFE_API_KEY = "c3cc24cdd9b08707949066832f"
-const base_url = "https://jxviii.ghost.io"
-
 export async function getPosts() {
 
   // Todos los posts
-  const url = `${base_url}/ghost/api/content/posts/?key=${SUPER_SAFE_API_KEY}&include=tags&include=authors`;
+  const url = `/.netlify/functions/getPosts`;
 
   try{
     const res = await fetch(url);
@@ -14,15 +11,48 @@ export async function getPosts() {
       return;
     }
 
-    const data = await res.json();
-    
-    console.log(data.posts);
-    
+    const { data } = await res.json();
     return data.posts;
   }
   catch(err){
     console.error("Error: ", err);
     return;
+  }
+
+}
+
+export async function uploadFile(file){
+
+  const url = `/.netlify/functions/postImage`;
+
+  const formData = new FormData();
+
+  formData.append("image", file);
+
+  try{
+    const res = await fetch(url, {
+      method:"POST",
+      body: formData
+    });
+
+    if(!res.ok){
+      console.error("Upload failed: ", res.status);
+      return -1;
+    }
+
+    const { success , error, status, file } = await res.json();
+
+    if(!res.ok || !success){
+      console.error(error, status);
+      return -1;
+    }
+
+    return file.url;
+
+  }
+  catch(err){
+    console.error("Upload failed: ", err);
+    return -1;
   }
 
 }

@@ -87,6 +87,7 @@ function setUpFilters() {
   setUpTagsFilter();
   setUpDateFilter();
   setUpOutsideClick();
+  setUpNewPost();
 }
 
 function setUpSearchFilter() {
@@ -216,6 +217,18 @@ function setUpOutsideClick() {
     document.querySelector(".filter-tag-menu")?.classList.remove("displayed");
     document.querySelector(".filter-date-menu")?.classList.remove("displayed");
   });
+}
+
+function setUpNewPost(){
+
+  const newPostButton = document.getElementById("new-post");
+
+  newPostButton.addEventListener("click", () => {
+
+    window.location.href="/admin/editor.html";
+
+  })
+
 }
 
 async function main() {

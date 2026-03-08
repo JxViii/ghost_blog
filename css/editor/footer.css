@@ -1,0 +1,14 @@
+footer{
+
+  position: sticky;
+  bottom: 20px;
+
+}
+
+.footer-wrapper{
+
+  display: flex;
+  justify-content: right;
+  margin-right: 60px;
+
+}

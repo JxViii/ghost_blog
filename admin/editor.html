@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Editor</title>
+</head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=BBH+Bartle&family=BBH+Bogle&family=BBH+Hegarty&family=Bebas+Neue&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="/css/editor/editor.css">
+<link rel="stylesheet" href="/css/editor/header.css">
+<link rel="stylesheet" href="/css/editor/footer.css">
+<link rel="stylesheet" href="/css/editor/editorjs.css">
+<link rel="stylesheet" href="/css/editor/side-menu.css">
+<link rel="stylesheet" href="/css/editor/editor-tags.css">
+<body>
+  <div class="side-menu-button">
+    <button class="header-button" id="menu">
+      <svg fill="#000000" height="200px" width="200px" version="1.1" id="XMLID_309_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g id="menu"> <g> <path d="M24,21H0v-2h24V21z M24,13H0v-2h24V13z M24,5H0V3h24V5z"></path> </g> </g> </g></svg>
+    </button>
+  </div>
+  <div class="body-grid">
+    <div class="main-editor">
+      <header>
+        <div class="header-wrapper">
+          <div class="header-grid">
+            <button class="header-button" id="post-manager">
+              <svg viewBox="0 0 16 16"><path d="M12.05 1.303a1 1 0 01-.02 1.414L6.597 8l5.433 5.283a1 1 0 01-1.394 1.434L4.756 9a1.4 1.4 0 01-.423-1 1.39 1.39 0 01.423-1l5.88-5.717a1 1 0 011.414.02z"></path></svg> Posts
+            </button>
+            <div>
+              <button class="header-button" id="preview">
+                Preview
+              </button>
+              <button class="header-button" id="post">
+                Post
+              </button>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main>
+        <div class="editor-wrapper" spellcheck="false">
+          <div class="editor-grid">
+            <div class="editor-feature-image">
+              <!-- <img src="/images/yatora_mirror.jpg" alt="" id="feature-img">
+              <input type="text" class="feature-image-caption" placeholder="Cover description..."> -->
+              <button type="button" id="feature-image-button">+ Add feature image</button>
+              <input type="file" id="feature-image-input" accept="image/*" hidden>
+            </div>
+            <div class="editor-title">
+              <input type="text" placeholder="Post Title" autocomplete="off" id="editor-title">
+            </div>
+            <div class="editor" id="editorjs">
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <footer>
+        <div class="footer-wrapper">
+          <div class="word-count">
+            0 words
+          </div>
+        </div>
+      </footer>
+
+
+    </div>
+    <div class="side-menu">
+      <h2 class="side-menu-title">Post Settings</h2>
+      <div class="side-menu-item">
+        <label for="post-url">Post Url</label>
+        <div class="side-menu-url">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M13.4 10.6c2 2 2 5.1 0 7.1l-2.8 2.8c-2 2-5.1 2-7.1 0s-2-5.1 0-7.1L6 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M10.6 13.4c-2-2-2-5.1 0-7.1l2.8-2.8c2-2 5.1-2 7.1 0s2 5.1 0 7.1L18 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+          <input type="text" name="post-url" id="side-menu-tags">
+        </div>
+        <div class="url-preview">jxviiiblog.netlify.app/blog/</div>
+      </div>
+      <div class="side-menu-item">
+        <label for="side-menu-tags">Tags</label>
+      </div>
+      <div class="side-menu-item">
+        <label for="excerpt">Excerpt</label>
+        <textarea name="excerpt" id="side-menu-excerpt" rows="7"></textarea>
+      </div>
+      <div class="side-menu-item" id="todo">
+        <h2>More features coming soon...</h2>
+      </div>
+    </div>
+  </div>
+  <!-- EDITOR JS -->
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/header@latest"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/list@latest"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/image@latest"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/quote@latest"></script>
+  <!-- CDN Cloudinary -->
+
+  <script type="module" src="/js/editor-setup.js"></script>
+  <script type="module" src="/js/editor.js"></script>
+</body>
+</html>
