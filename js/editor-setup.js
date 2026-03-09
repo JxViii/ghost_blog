@@ -4,7 +4,7 @@ class GhostQuoteTool {
   static get toolbox() {
     return {
       title: "Ghost Quote",
-      icon: "❝"
+      icon: ":)"
     };
   }
 
@@ -78,6 +78,17 @@ const editor = new EditorJS({
     ghostQuote: {
       class: GhostQuoteTool,
       inlineToolbar: true
+    },
+    embed: {
+      class: Embed,
+      inlineToolbar: true,
+      config: {
+        services: {
+          youtube: true,
+          coub: true,
+          codepen: true,
+        },
+      },
     }
   },
   onReady: () => {
