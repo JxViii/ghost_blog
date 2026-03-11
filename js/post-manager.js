@@ -1,5 +1,6 @@
 import { getPostsGhost } from "./api/ghost.js";
-import { getDate, getAllTags, getMainAuthor } from "./auxiliar.js";
+import { getPosts } from "./api/blog-api.js";
+import { getDate, getAllTags } from "./auxiliar.js";
 
 const state = {
   posts: [],
@@ -14,7 +15,7 @@ function loadPostsManager(postsToRender) {
   const cardsHTML = postsToRender
     .map((post) => {
       const date = getDate(post);
-      const mainAuthor = getMainAuthor(post.authors);
+      const mainAuthor = post.author
       const tagsHTML = post.tags
         .map(
           (tag) => `
@@ -232,7 +233,7 @@ function setUpNewPost(){
 }
 
 async function main() {
-  const posts = await getPostsGhost();
+  const posts = await getPosts();
 
   if (!posts || !Array.isArray(posts)) {
     console.error("Could not load posts.");

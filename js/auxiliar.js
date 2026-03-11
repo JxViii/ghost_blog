@@ -52,6 +52,10 @@ export function getAllTags(v_posts){
 
 }
 
+/*
+  Ghost function or a later update in author []
+*/
+
 export function getMainAuthor(authors){
 
   return authors[0].name;

@@ -1,3 +1,5 @@
+import { loadPost } from "./editor-actions.js";
+
 class GhostQuoteTool {
   static get toolbox() {
     return {
@@ -99,4 +101,4 @@ export const editor = new EditorJS({
   }
 });
 
-
+loadPost();

@@ -46,6 +46,7 @@
           <div class="editor-grid">
             <div class="editor-feature-image">
               <!-- <img src="/images/yatora_mirror.jpg" alt="" id="feature-img">
+              <button id="delete-feature-img">✖</button>
               <input type="text" class="feature-image-caption" placeholder="Cover description..."> -->
               <button type="button" id="feature-image-button">+ Add feature image</button>
               <input type="file" id="feature-image-input" accept="image/*" hidden>
@@ -91,6 +92,11 @@
       <div class="side-menu-item" id="todo">
         <h2>More features coming soon...</h2>
       </div>
+      <div class="side-menu-item" id="delete">
+        <button id="delete-post">
+          Delete this post
+        </button>
+      </div>
     </div>
   </div>
   <!-- EDITOR JS -->
@@ -105,6 +111,7 @@
 
   <script type="module" src="/js/editor/editor-setup.js"></script>
   <script type="module" src="/js/editor/editor-buttons.js"></script>
-  <script type="module" src="/js/editor/editor-post.js"></script>
+  <script type="module" src="/js/editor/editor-actions.js"></script>
+  <script type="module" src="/js/editor/editor-actions.js"></script>
 </body>
 </html>

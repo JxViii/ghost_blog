@@ -134,3 +134,37 @@
   text-align: center;
   padding: 10px;
 }
+
+.side-menu-item button#delete-post{
+
+  position: relative;
+
+  border: none;
+  padding: 10px;
+  background: transparent;
+  color: var(--red);
+  font-size: 18px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  cursor: pointer;
+
+  transition: color .3s ease, border .3s ease, background .5s ease, scale .3s ease, letter-spacing .3s ease, margin .2s ease;
+}
+
+.side-menu-item button#delete-post::before{
+
+  position: absolute;
+  content: "";
+  inset: 0;
+
+  margin: 0;
+  border: 2px solid var(--red);
+
+}
+
+.side-menu-item button#delete-post:hover{
+
+  scale: 1.025;
+  letter-spacing: 5px;
+
+}

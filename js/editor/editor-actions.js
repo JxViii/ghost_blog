@@ -1,8 +1,8 @@
 import { editor } from "/js/editor/editor-setup.js"
 import { getSlugFromTitle } from "/js/auxiliar.js"
-import { updatePost, uploadPost, deletePost, deleteAllPosts } from "../api/blog-api";
+import { updatePost, uploadPost, deletePost, deleteAllPosts, getPostById } from "/js/api/blog-api.js";
 
-export async function buildPostObject(existing_post){
+export async function buildPostObject(){
 
   const title = document.getElementById("editor-title").value.trim();
   const featureImage = document.getElementById("feature-img")?.src || null
@@ -17,7 +17,6 @@ export async function buildPostObject(existing_post){
     html: "",
     author: "JxViii",
     tags: [],
-    status: existing_post?.status ?? "draft",
     slug: slug,
     url: `/blog/${slug}`
   };
@@ -26,39 +25,16 @@ export async function buildPostObject(existing_post){
 
 }
 
-export async function postBlog(existing_post, toPost){
-
-  const post = await buildPostObject(existing_post);
-  post.status = (toPost) ? "published" : "draft";
-
-  const res = (!existing_post) ? await uploadPost(post) : await updatePost(post);
-  if(res) return true;
-
-  post.status = "draft"
-  return false;
-
-}
-
-export async function deleteBlog(existing_post){
-
-  const post = await buildPostObject();
-  post.id = getIdURL();
-
-  if(!post.id)
-    return false;
-
-  const { status } = await deletePost(post);
-  if(status === 204) return true;
-  return false;
-
-}
-
 export function getIdURL() {
   return new URLSearchParams(window.location.search).get("id");
 }
 
 export function setEditorURL(id) {
-  window.history.replaceState({}, "", `/editor.html?id=${id}`);
+  window.history.replaceState({}, "", `/admin/editor.html?id=${id}`);
+}
+
+export function deleteEditorURL() {
+  window.history.replaceState({}, "", `/admin/editor.html`);
 }
 
 export async function savePost(status = "draft"){
@@ -92,7 +68,91 @@ export async function savePost(status = "draft"){
     return savedPost ?? null;
 }
 
-// handlers
+export async function loadPost(){
+
+  const id = getIdURL();
+
+  if(!id) return;
+
+  const post = await getPostById(id);
+
+  if(!post){
+    console.error("No post with this id");
+    return;
+  }
+
+  const { title,
+          feature_image,
+          editor_data,
+  } = post;
+
+  const titleElement = document.getElementById("editor-title");
+
+  if (title)
+    titleElement.value = title;
+
+  console.log(feature_image);
+  if (feature_image){
+
+    const featureImgWrapper = document.querySelector(".editor-feature-image")
+    const featureImgButton = document.getElementById("feature-image-button")
+
+    featureImgButton.style.display = "none";
+
+    featureImgWrapper.insertAdjacentHTML("beforeend", `
+    
+      <img src="${feature_image}" alt="" id="feature-img">
+      <button id="delete-feature-img">✖</button>
+      <input type="text" class="feature-image-caption" placeholder="Cover description...">
+
+    `)
+
+    const deleteFeatureImageButton = document.getElementById("delete-feature-img");
+
+    deleteFeatureImageButton.addEventListener("click", async ()=> {
+      deleteFeatureImage();
+    });
+  }
+
+  if (editor_data){
+    await editor.isReady;
+    await editor.render(editor_data);
+  }
+
+}
+
+async function clearPost(){
+
+  const titleElement = document.getElementById("editor-title");
+
+  titleElement.value = "";
+
+  deleteFeatureImage();
+
+  await editor.isReady;
+  await editor.clear();
+
+}
+/*
+  Images
+*/
+export function deleteFeatureImage(){
+
+  const featureImgButton = document.getElementById("feature-image-button")
+  const featureImage = document.getElementById("feature-img");
+  const featureImageCaption = document.querySelector(".feature-image-caption");
+  const deleteFeatureImageButton = document.getElementById("delete-feature-img");
+
+  featureImage?.remove();
+  featureImageCaption?.remove();
+  deleteFeatureImageButton?.remove();
+
+  featureImgButton.style.display = "flex";
+}
+
+/*
+  Button Handlers
+*/
 export async function handlePublish() {
   return await savePost("published");
 }
@@ -102,7 +162,7 @@ export async function handleSaveDraft() {
 }
 
 export async function handleDelete() {
-  const postId = getPostIdFromUrl();
+  const postId = getIdURL();
 
   if (!postId) {
     console.error("No post ID in URL");
@@ -110,6 +170,12 @@ export async function handleDelete() {
   }
 
   const deleted = await deletePost({ id: postId });
+
+  if(deleted !== 204)
+    return false;
+
+  deleteEditorURL();
+  await clearPost();
   return deleted === 204;
 }
 

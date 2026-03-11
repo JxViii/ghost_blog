@@ -15,6 +15,7 @@
   --dark_white: #eeeeee;
   --date-tag-bg: #45b264;
   --light-yellow: #fefead;
+  --red: #fd6868;
 }
 
 .codex-editor ::selection,
@@ -32,10 +33,21 @@ textarea::selection,
   color: #111 !important;
 }
 
+#editorjs > div > div.codex-editor__redactor{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
 .ce-block__content{
 
   max-width: 100%;
 
+}
+
+.ce-paragraph.cdx-block{
+  font-size: 18px;
+  line-height: 1.7;
 }
 
 .ce-paragraph.cdx-block span{
@@ -49,6 +61,15 @@ textarea::selection,
 
 .ce-block__content{
   margin: 0;
+}
+
+.cdx-list__item{
+  gap: 10px;
+}
+
+.cdx-list__item-content{
+  font-size: 18px;
+  line-height: 1.7;
 }
 
 .ce-toolbar__actions.ce-toolbar__actions--opened{

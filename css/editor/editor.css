@@ -89,6 +89,7 @@ main{
 }
 
 .editor-feature-image{
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -118,4 +119,27 @@ img#feature-img{
 
 .feature-image-caption:focus-visible{
   outline: 1px solid var(--light-light-grey);
+}
+
+button#delete-feature-img{
+
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  border: none;
+  outline: 2px solid var(--white);
+  background: #0000006a;
+  color: var(--white);
+  cursor: pointer;
+  padding: 5px 10px;
+
+  transition: color .3s ease, outline .15s ease, 
+
+}
+
+button#delete-feature-img:hover{
+
+  color: var(--red);
+  outline: 2px solid var(--red);
+
 }

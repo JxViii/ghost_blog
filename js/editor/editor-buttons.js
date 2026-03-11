@@ -1,6 +1,6 @@
 
 import { uploadFile } from "/js/api/cloudinary.js" 
-import { buildPostObject, postBlog, deleteBlog, handlePublish, handleSaveDraft } from "/js/editor/editor-actions.js";
+import { buildPostObject, savePost, handlePublish, handleSaveDraft, handleDelete, deleteFeatureImage } from "/js/editor/editor-actions.js";
 
 const bodyGrid = document.querySelector(".body-grid");
 const sideMenu = document.querySelector(".side-menu");
@@ -16,6 +16,20 @@ function setUpUIButtons(){
   setUpPostManagerButton();
   setUpPostBlogButton();
   setUpSaveDraft();
+  setUpDeletePostButton();
+
+}
+
+async function setUpDeletePostButton(){
+
+  const delButton = document.getElementById("delete-post");
+
+  delButton.addEventListener("click", async () => {
+
+    const deleted = await handleDelete();
+
+    console.log("Deleted : ", deleted);
+  })
 
 }
 
@@ -88,13 +102,11 @@ async function setUpFeatureImage(){
     const file = e.target.files[0];
     if(!file) return;
 
-    console.log(file);
 
     getFeatureImage(file);
 
   })
 }
-
 
 async function getFeatureImage(file){
 
@@ -111,23 +123,18 @@ async function getFeatureImage(file){
   featureImgWrapper.insertAdjacentHTML("beforeend", `
   
     <img src="${url}" alt="" id="feature-img">
+    <button id="delete-feature-img">✖</button>
     <input type="text" class="feature-image-caption" placeholder="Cover description...">
 
   `)
 
-}
+  const deleteFeatureImageButton = document.getElementById("delete-feature-img");
 
-function deleteFeatureImage(url){
+  deleteFeatureImageButton.addEventListener("click", async ()=> {
 
-  const img = document.getElementById("feature-img");
+    deleteFeatureImage()
 
-  featureImgButton.style.display = "flex";
-
-  featureImgWrapper.insertAdjacentHTML("beforeend", `
-  
-    <img src="${url}" alt="" id="feature-img">
-
-  `);
+  });
 
 }
 
