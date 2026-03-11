@@ -1,4 +1,4 @@
-import { getPosts } from "./api.js";
+import { getPostsGhost } from "./api/ghost.js";
 import { getDate, getAllTags, getMainAuthor } from "./auxiliar.js";
 
 const state = {
@@ -232,7 +232,7 @@ function setUpNewPost(){
 }
 
 async function main() {
-  const posts = await getPosts();
+  const posts = await getPostsGhost();
 
   if (!posts || !Array.isArray(posts)) {
     console.error("Could not load posts.");

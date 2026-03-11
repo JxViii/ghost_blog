@@ -68,3 +68,10 @@ export function contains(x, v){
 
 }
 
+export function getSlugFromTitle(title){
+
+  return title.toLowerCase()
+              .replace(/\s+/g, "-") //Replaces whitespace characters for -
+              .replace(/[^\w-]/g, ""); //Deletes anything that isnt a word character
+          
+}

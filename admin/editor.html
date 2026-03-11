@@ -7,7 +7,7 @@
 </head>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=BBH+Bartle&family=BBH+Bogle&family=BBH+Hegarty&family=Bebas+Neue&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=BBH+Bartle&family=BBH+Bogle&family=BBH+Hegarty&family=Bebas+Neue&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Outfit:wght@300&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="/css/editor/editor.css">
 <link rel="stylesheet" href="/css/editor/header.css">
@@ -51,7 +51,7 @@
               <input type="file" id="feature-image-input" accept="image/*" hidden>
             </div>
             <div class="editor-title">
-              <input type="text" placeholder="Post Title" autocomplete="off" id="editor-title">
+              <input type="text" placeholder="Post Title" autocomplete="off" id="editor-title" required>
             </div>
             <div class="editor" id="editorjs">
             </div>
@@ -100,9 +100,11 @@
   <script src="https://cdn.jsdelivr.net/npm/@editorjs/image@latest"></script>
   <script src="https://cdn.jsdelivr.net/npm/@editorjs/quote@latest"></script>
   <script src="https://cdn.jsdelivr.net/npm/@editorjs/embed@latest"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/code@latest"></script>
   <!-- CDN Cloudinary -->
 
-  <script type="module" src="/js/editor-setup.js"></script>
-  <script type="module" src="/js/editor.js"></script>
+  <script type="module" src="/js/editor/editor-setup.js"></script>
+  <script type="module" src="/js/editor/editor-buttons.js"></script>
+  <script type="module" src="/js/editor/editor-post.js"></script>
 </body>
 </html>

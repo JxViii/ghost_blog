@@ -1,4 +1,4 @@
-import { getPosts } from "./api.js";
+import { getPostsGhost } from "./api/ghost.js";
 import { getDate, getTags } from "./auxiliar.js";
 
 const state = {
@@ -120,7 +120,7 @@ function setUpPostURLS() {
 
 async function main() {
   try {
-    const posts = await getPosts();
+    const posts = await getPostsGhost();
     state.posts = Array.isArray(posts) ? posts : [];
     updateView();
   } catch (error) {

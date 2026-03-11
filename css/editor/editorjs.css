@@ -270,3 +270,23 @@ textarea::selection,
 ::spelling-error {
   color: var(--light-yellow);
 }
+
+/* code block */
+
+.ce-code__textarea.cdx-input{
+    min-height: 200px;
+    font-family: "JetBrains Mono", monospace;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    color: var(--white);
+    line-height: 1.6em;
+    font-size: 12px;
+    background: var(--light-grey2);
+    border: 1px solid #f1f1f4;
+    box-shadow: none;
+    white-space: pre;
+    word-wrap: normal;
+    overflow-x: auto;
+    resize: vertical;
+}
