@@ -1,6 +1,6 @@
 .side-menu-button{
   position: fixed;
-  top: 25px;
+  top: 29px;
   right: 16px;
   z-index: 1000;
 
@@ -35,7 +35,11 @@
 
 .side-menu{
 
-  opacity: 1;
+  opacity: 0;
+  position: sticky;
+  top: 0px;
+  align-self: start;
+  height: 100dvh;
 
   border-left: 1px solid var(--light-light-grey);
   padding: 25px;

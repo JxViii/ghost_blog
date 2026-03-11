@@ -48,9 +48,28 @@ function loadPostsManager(postsToRender) {
   postGrid.innerHTML = cardsHTML;
 }
 
+function setUpLinks(){
+
+  const posts = document.querySelectorAll(".post-item");
+
+  posts.forEach(post => {
+
+    const id = post.id;
+
+    post.addEventListener("click", () => {
+
+      window.location.href = `/admin/editor.html?id=${id}`;
+
+    })
+
+  })
+
+}
+
 function render() {
   const visiblePosts = applyFilters();
   loadPostsManager(visiblePosts);
+  setUpLinks();
 }
 
 function applyFilters() {

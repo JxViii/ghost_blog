@@ -1,6 +1,7 @@
 header{
   position: sticky;
   top: 0;
+  z-index: 400;
 }
 
 .header-grid{
@@ -8,7 +9,6 @@ header{
   display: flex;
   justify-content: space-between;
   padding: 25px 30px;
-  padding-right: 60px;
 
 }
 
@@ -19,7 +19,7 @@ header{
 
 .header-grid .header-button{
   
-  font-size: 15px;
+  font-size: 16px;
   background: transparent;
   border: none;
   color: var(--white);
@@ -55,4 +55,12 @@ header{
 .header-grid .header-button#post{
   --cyan-blue: #29fbc7;
   color: var(--cyan-blue);
+}
+
+.header-grid span{
+
+  font-size: 16px;
+  padding: 7px;
+  color: var(--light-grey3);
+
 }

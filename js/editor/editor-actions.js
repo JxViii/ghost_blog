@@ -33,6 +33,28 @@ export function setEditorURL(id) {
   window.history.replaceState({}, "", `/admin/editor.html?id=${id}`);
 }
 
+export function updateSaveState(status = "clear"){
+  
+  const saveState = document.querySelector(".save-state");
+  let msg = "";
+
+  if(status === "clear"){
+    msg = "";
+  }
+  else if( !status ){
+    msg = "Couldn't be saved !";
+  }
+  else if(status === "published" || status === "draft"){
+    const statusCapitalized = status.charAt(0).toUpperCase() + status.slice(1);
+    msg = `Saved - ${statusCapitalized}`;
+  }
+  else{
+    msg = "What did you even sent here?";
+  }
+
+  saveState.innerText = msg;
+}
+
 export function deleteEditorURL() {
   window.history.replaceState({}, "", `/admin/editor.html`);
 }
@@ -64,8 +86,13 @@ export async function savePost(status = "draft"){
       }
     }
 
-    console.log(savedPost);
-    return savedPost ?? null;
+    if(savedPost){
+      updateSaveState(status);
+      return savedPost;
+    }
+
+    updateSaveState(null);
+    return null;
 }
 
 export async function loadPost(){
@@ -176,6 +203,7 @@ export async function handleDelete() {
 
   deleteEditorURL();
   await clearPost();
+  updateSaveState("clear");
   return deleted === 204;
 }
 
