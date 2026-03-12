@@ -6,13 +6,16 @@ export async function buildPostObject(){
 
   const title = document.getElementById("editor-title").value.trim();
   const featureImage = document.getElementById("feature-img")?.src || null
+  const excerpt = document.getElementById("side-menu-excerpt").value.trim();
   const slug = getSlugFromTitle(title);
   const editorData = await editor.save();
+
+  const { blocks } = editorData;
 
   const post = {
     title: title,
     feature_image: featureImage,
-    excerpt: null,
+    excerpt: excerpt || "There is no description for this post",
     editor_data: editorData,
     html: "",
     author: "JxViii",
@@ -111,6 +114,7 @@ export async function loadPost(){
   const { title,
           feature_image,
           editor_data,
+          excerpt
   } = post;
 
   const titleElement = document.getElementById("editor-title");
@@ -139,6 +143,14 @@ export async function loadPost(){
     deleteFeatureImageButton.addEventListener("click", async ()=> {
       deleteFeatureImage();
     });
+  }
+
+  if(excerpt){
+
+    const excerptElement = document.getElementById("side-menu-excerpt");
+
+    excerptElement.value = excerpt;
+
   }
 
   if (editor_data){

@@ -27,7 +27,7 @@ main{
 
 .body-grid{
 
-  --open-menu-width: 40px;
+  --open-menu-width: 450px;
 
   display: grid;
   grid-template-columns: auto var(--open-menu-width);
