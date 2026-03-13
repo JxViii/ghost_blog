@@ -115,8 +115,9 @@ export const editor = new EditorJS({
 
     let lastState = null;
     document.addEventListener("keydown", async (e) => {
-      e.stopPropagation();
       if ( (e.key === 'c' || e.key === 'C') && (navigator.platform.match('Mac') ? e.metaKey : e.ctrlKey) && e.shiftKey){
+        e.preventDefault().
+        e.stopPropagation();
         lastState = await editor.save();
         await editor.clear();
       }
