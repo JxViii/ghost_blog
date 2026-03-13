@@ -1,6 +1,7 @@
 import { editor } from "/js/editor/editor-setup.js"
-import { getSlugFromTitle } from "/js/auxiliar.js"
+import { getSlugFromTitle, getTagByName } from "/js/auxiliar.js"
 import { updatePost, uploadPost, deletePost, deleteAllPosts, getPostById } from "/js/api/blog-api.js";
+import { getTagsFromEditor, addTag, renderTags } from "/js/editor/editor-tags.js";
 
 export async function buildPostObject(){
 
@@ -9,6 +10,7 @@ export async function buildPostObject(){
   const excerpt = document.getElementById("side-menu-excerpt").value.trim();
   const slug = getSlugFromTitle(title);
   const editorData = await editor.save();
+  const tags = getTagsFromEditor();
 
   const { blocks } = editorData;
 
@@ -19,7 +21,7 @@ export async function buildPostObject(){
     editor_data: editorData,
     html: "",
     author: "JxViii",
-    tags: [],
+    tags: tags,
     slug: slug,
     url: `/blog/${slug}`
   };
@@ -114,7 +116,8 @@ export async function loadPost(){
   const { title,
           feature_image,
           editor_data,
-          excerpt
+          excerpt,
+          tags
   } = post;
 
   const titleElement = document.getElementById("editor-title");
@@ -150,6 +153,12 @@ export async function loadPost(){
     const excerptElement = document.getElementById("side-menu-excerpt");
 
     excerptElement.value = excerpt;
+
+  }
+
+  if(tags){
+
+    tags.forEach( tag => addTag(tag) );
 
   }
 

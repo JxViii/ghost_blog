@@ -24,6 +24,14 @@ export function getDate(post){
   return date_tag;
 }
 
+export function getTagByID(v_tags, id) {
+  return v_tags.find(tag => tag.id === id) ?? null;
+}
+
+export function getTagByName(v_tags, name) {
+  return v_tags.find(tag => tag.name === name) ?? null;
+}
+
 export function getTags(v_tags){
 
   const tags = [];
@@ -34,6 +42,24 @@ export function getTags(v_tags){
 
   return tags;
 }
+
+export function getAllTagsF(v_posts){
+
+  const tags = [];
+
+  v_posts.forEach(post => {
+
+    post.tags.forEach(tag => {
+      if( contains(tag.name, tags) === -1 )
+        tags.push(tag);
+    })
+
+  })
+
+  return tags;
+
+}
+
 
 export function getAllTags(v_posts){
 
