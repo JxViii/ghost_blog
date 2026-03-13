@@ -54,6 +54,10 @@ function replaceToolbarSVG(){
 export const editor = new EditorJS({
   holder: "editorjs",
   tools: {
+    paragraph: {
+      class: Paragraph,
+      inlineToolbar: ["bold", "italic", "link"]
+    },
     header: Header,
     list: {
       class: EditorjsList,
@@ -93,11 +97,36 @@ export const editor = new EditorJS({
     code: {
       class: CodeTool,
       inlineToolbar: true
+    },
+    delimiter: {
+      class: Delimiter,
+      inlineToolbar: true
+    },
+    attaches: {
+      class: AttachesTool,
+      config: {
+        endpoint: '/.netlify/functions/postFile'
+      }
     }
   },
   onReady: () => {
     replaceToolbarSVG();
     document.querySelector(".codex-editor").setAttribute("spellcheck", "false");
+
+    let lastState = null;
+    document.addEventListener("keydown", async (e) => {
+      if ( (e.key === 'c' || e.key === 'C') && (navigator.platform.match('Mac') ? e.metaKey : e.ctrlKey) && e.shiftKey){
+        lastState = await editor.save();
+        await editor.clear();
+      }
+    });
+
+    document.addEventListener("keydown", async (e) => {
+      if ( (e.key === 'z' || e.key === 'Z') && (navigator.platform.match('Mac') ? e.metaKey : e.ctrlKey) && lastState){
+        await editor.render(lastState);
+        lastState = null;
+      }
+    })
   }
 });
 

@@ -89,6 +89,10 @@
 
 }
 
+.side-menu-item textarea{
+  font-size: 16px;
+}
+
 .side-menu-url{
   background: var(--light-grey);
   border-radius: 10px;

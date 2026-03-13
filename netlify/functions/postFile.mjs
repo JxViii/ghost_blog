@@ -6,7 +6,7 @@ export default async (request, context) => {
   try{
 
     const body = await request.formData();
-    const file = body.get("image");
+    const file = body.get("file");
 
     if (!file) {
       return Response.json({ success: 0, error: "No file received" }, { status: 400 });
@@ -27,7 +27,7 @@ export default async (request, context) => {
       return Response.json(
         {
           success: 0,
-          error: "Couldn't upload the image",
+          error: "Couldn't upload the file",
           status: res.status,
           file: null
         }
@@ -43,6 +43,10 @@ export default async (request, context) => {
         success: 1,
         error: null,
         file: {
+          name: file.name,
+          title: file.name,
+          size: file.size,
+          extensiom: file.name.split(".").pop(),
           url: data.secure_url
         },
         status: res.status
