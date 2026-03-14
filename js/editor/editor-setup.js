@@ -107,6 +107,14 @@ export const editor = new EditorJS({
       config: {
         endpoint: '/.netlify/functions/postFile'
       }
+    },
+    table: {
+      class: Table,
+      inlineToolbar: true,
+      config: {
+        rows: 2,
+        cols: 3
+      }
     }
   },
   onReady: () => {
