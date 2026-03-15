@@ -40,9 +40,7 @@ export default{
                     <button id="close">✖</button>
                   </div>
                 </div>
-                <textarea class="blog-post-code" readonly>
-    ${obj.data.code} 
-                </textarea>
+                <textarea class="blog-post-code" readonly>${obj.data.code}</textarea>
               </div>`
     },
 
@@ -88,7 +86,7 @@ export default{
                     </div>
                     <div class="blog-post-file-text">
                       <h3 class="blog-post-file-title">${obj.data.file.title}</h3>
-                      <p class="blog-post-file-size">${ (obj.data.file.size / (1024 * 1024)).toFixed(2) } MB</p>
+                      <p class="blog-post-file-size">${ (obj.data.file.size / 1024).toFixed(2) } KB</p>
                     </div>
                   </div>
                   <div class="blog-post-file-download">
