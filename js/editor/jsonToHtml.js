@@ -105,6 +105,10 @@ export default{
       return `<div class="blog-ghost-quote">
               ${obj.data.text}
             </div>`
+    },
+
+    makeEmbed(obj){
+      return `<div class="blog-post-embed"><iframe width="700" height="455" src="${obj.data.embed}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>`
     }
 
   }

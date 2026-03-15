@@ -419,6 +419,15 @@ li.blog-post-li{
   }
 }
 
+.blog-post-embed{
+
+  display: flex;
+  align-items: center;
+  width: 700px;
+  margin: 0 auto;
+
+}
+
 
 /* .blog-post-image::before{
   position: absolute;

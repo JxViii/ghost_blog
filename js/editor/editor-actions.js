@@ -255,6 +255,8 @@ function handleBlock(obj){
       return toHTML.methods.makeImage(obj);
     case "attaches":
       return toHTML.methods.makeFile(obj);
+    case "embed":
+      return toHTML.methods.makeEmbed(obj);
   }
 
 }
