@@ -22,15 +22,22 @@ export default async (request, context) => {
 
     case "GET": {
 
-      const post = await uploads.get(id, {type: "json"});
-      if(post === null) return Response.json({
-        error: "Post not found",
-        status: 404
-      })
-      return Response.json(
-        { post },
-        { status: 200 }
-      )
+      try {
+        const post = await uploads.get(id, {type: "json"});
+        if(post === null) return Response.json({
+          error: "Post not found",
+          status: 404
+        })
+        return Response.json(
+          { post },
+          { status: 200 }
+        )
+      } catch(e) {
+        return Response.json({
+          error: "Post data is corrupt and could not be parsed",
+          status: 500
+        })
+      }
 
     }
     case "PUT": {

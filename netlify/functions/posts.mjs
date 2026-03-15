@@ -15,11 +15,15 @@ export default async (request, context) => {
 
       const { blobs } = await uploads.list();
       const posts = [];
-      
+
       for(const { key } of blobs) {
-        const post = await uploads.get(key, {type: "json"});
-        if( post ) 
-          posts.push(post);
+        try {
+          const post = await uploads.get(key, {type: "json"});
+          if( post )
+            posts.push(post);
+        } catch(e) {
+          console.error(`Skipping corrupt blob entry: ${key}`, e.message);
+        }
       }
 
       return Response.json({
@@ -57,12 +61,16 @@ export default async (request, context) => {
 
         const { blobs } = await uploads.list();
         for( const { key } of blobs ){
-          const post = await uploads.get(key, { type: "json"});
-          if(post?.slug === slug)
-            return Response.json(
-              { error: "A post with this slug already exists" },
-              { status: 409 }
-            );
+          try {
+            const post = await uploads.get(key, { type: "json"});
+            if(post?.slug === slug)
+              return Response.json(
+                { error: "A post with this slug already exists" },
+                { status: 409 }
+              );
+          } catch(e) {
+            // Skip corrupt entries during slug check
+          }
         }
 
         const now = new Date().toISOString();
@@ -112,6 +120,29 @@ export default async (request, context) => {
           { status: 400 }
         )
       return new Response(null, { status: 204 });
+    }
+
+    case "PATCH": {
+
+      // Cleanup: find and remove corrupt (non-JSON) blob entries
+      const { blobs } = await uploads.list();
+      const removed = [];
+
+      for(const { key } of blobs) {
+        try {
+          await uploads.get(key, { type: "json" });
+        } catch(e) {
+          await uploads.delete(key);
+          removed.push(key);
+        }
+      }
+
+      return Response.json({
+        message: `Cleanup complete. Removed ${removed.length} corrupt entries.`,
+        removed,
+        status: 200
+      });
+
     }
 
   }
