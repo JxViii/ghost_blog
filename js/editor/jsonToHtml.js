@@ -25,7 +25,7 @@ export default{
                 </li>`
       });
 
-      return `<${type}l>
+      return `<${type}l class="blog-post-list">
                 ${list.join('')}
               </${type}l>`
     },
@@ -61,11 +61,13 @@ export default{
 
       const type = obj.data.file.extension;
       let url = "/images/icons/doc.png";
+      let style="";
 
       switch (type) {
 
         case "html" || "css" || "js": {
           url = "/images/icons/terminal.png";
+          style="filter: invert()";
         }
         
         case "pdf": {
@@ -78,11 +80,11 @@ export default{
 
       };
 
-      return `<a class="blog-post-file" download="${obj.data.file.url}">
+      return `<a class="blog-post-file" href="${obj.data.file.url}" download>
                 <div class="blog-post-file-grid">
                   <div class="blog-post-file-info">
                     <div class="blog-post-file-icon">
-                      <img src="${url}" alt="">
+                      <img src="${url}" alt="" style="${style}">
                     </div>
                     <div class="blog-post-file-text">
                       <h3 class="blog-post-file-title">${obj.data.file.title}</h3>

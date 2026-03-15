@@ -46,14 +46,14 @@
           <li class="blog-post-li">Element 2</li>
           <li class="blog-post-li">Element 3</li>
         </ul>
-        <a class="blog-post-file" download="">
+        <a class="blog-post-file" href="/js/blog.js" download>
           <div class="blog-post-file-grid">
             <div class="blog-post-file-info">
               <div class="blog-post-file-icon">
-                <img src="/images/icons/pdf.png" alt="">
+                <img src="/images/icons/terminal.png" alt="" style="filter: invert()">
               </div>
               <div class="blog-post-file-text">
-                <h3 class="blog-post-file-title">main.py</h3>
+                <h3 class="blog-post-file-title">blog.js</h3>
                 <p class="blog-post-file-size">6.8 Kib</p>
               </div>
             </div>
@@ -65,7 +65,7 @@
             </div>
           </div>
         </a>
-        <p class="blog-post-text">El link a mi canal es <a href="" class="blog-post-link">https://youtube.com</a></p>
+        <p class="blog-post-text">El link a mi canal es <a href="https://youtube.com">Youtube</a></p>
         <div class="blog-ghost-quote">
           "This is a Ghost Quote"
         </div>
@@ -79,20 +79,20 @@
             </div>
           </div>
           <textarea class="blog-post-code" readonly>
-  function addAddress(address){
+function addAddress(address){
 
-    const { name, id, url } = address;
+  const { name, id, url } = address;
 
-    if( typeof name !== "String" )
-      return -1;
+  if( typeof name !== "String" )
+    return -1;
 
-    const date = new Date().toIsoString();
-    
-    const address = new AddressObj(name, id, url, date)
+  const date = new Date().toIsoString();
+  
+  const address = new AddressObj(name, id, url, date)
 
-    return address;
+  return address;
 
-  }
+}
         </textarea>
         </div>
         <div class="blog-post-delimiter">
