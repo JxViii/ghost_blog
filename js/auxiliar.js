@@ -1,4 +1,4 @@
-function getMonth(number){
+export function getMonth(number){
 
   if(number < 1 || number > 12) return -1;
 
@@ -11,7 +11,9 @@ function getMonth(number){
 
 export function getDate(post){
 
-  const post_time = post.published_at.split('T');
+  if(!post.published_at) return;
+
+  const post_time = post.published_at?.split('T');
   const date = post_time[0].split('-');
   const day = parseInt(date[2]);
   const month = getMonth(parseInt(date[1]));

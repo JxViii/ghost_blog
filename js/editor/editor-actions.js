@@ -2,6 +2,7 @@ import { editor } from "/js/editor/editor-setup.js"
 import { getSlugFromTitle, getTagByName } from "/js/auxiliar.js"
 import { updatePost, uploadPost, deletePost, deleteAllPosts, getPostById } from "/js/api/blog-api.js";
 import { getTagsFromEditor, addTag, renderTags } from "/js/editor/editor-tags.js";
+import toHTML from "/js/editor/jsonToHTML.js"
 
 export async function buildPostObject(){
 
@@ -14,12 +15,14 @@ export async function buildPostObject(){
 
   const { blocks } = editorData;
 
+  const html = blocks.map( obj => handleBlock(obj) ).join("\n");
+
   const post = {
     title: title,
     feature_image: featureImage,
     excerpt: excerpt || "There is no description for this post",
     editor_data: editorData,
-    html: "",
+    html: html,
     author: "JxViii",
     tags: tags,
     slug: slug,
@@ -226,6 +229,34 @@ export async function handleDelete() {
   await clearPost();
   updateSaveState("clear");
   return deleted === 204;
+}
+
+/*
+  Editor JS to HTML
+*/
+
+function handleBlock(obj){
+
+  switch(obj.type){
+
+    case "header":
+      return toHTML.methods.makeHeading(obj);
+    case "paragraph":
+      return toHTML.methods.makeParagraph(obj);
+    case "list":
+      return toHTML.methods.makeList(obj);
+    case "ghostQuote":
+      return toHTML.methods.makeGhostQuote(obj);
+    case "code":
+      return toHTML.methods.makeCode(obj);
+    case "delimiter":
+      return toHTML.methods.makeDelimiter(obj);
+    case "image":
+      return toHTML.methods.makeImage(obj);
+    case "attaches":
+      return toHTML.methods.makeFile(obj);
+  }
+
 }
 
 /*

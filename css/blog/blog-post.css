@@ -128,10 +128,10 @@ hr.blog-divider{
 /* EDITORJS ELEMENTS */
 
 .blog-content{
-  width: min(100%,900px);
+  width: min(100%,1000px);
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 30px;
 }
 
 .blog-post-heading{

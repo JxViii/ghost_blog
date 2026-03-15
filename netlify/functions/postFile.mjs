@@ -46,7 +46,7 @@ export default async (request, context) => {
           name: file.name,
           title: file.name,
           size: file.size,
-          extensiom: file.name.split(".").pop(),
+          extension: file.name.split(".").pop(),
           url: data.secure_url
         },
         status: res.status
