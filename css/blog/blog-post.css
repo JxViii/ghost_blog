@@ -132,6 +132,7 @@ hr.blog-divider{
   display: flex;
   flex-direction: column;
   gap: 30px;
+  text-align: justify;
 }
 
 .blog-post-heading{
