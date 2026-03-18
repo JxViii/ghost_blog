@@ -40,13 +40,6 @@ const main = async () => {
     html
   } = post;
 
-  console.log(title,
-    excerpt,
-    feature_image,
-    author,
-    tags,
-    published_at);
-
   blogTitle.textContent = title;
   blogDate.textContent = getFullDate(published_at);
   blogAuthors.insertAdjacentHTML("beforeend",

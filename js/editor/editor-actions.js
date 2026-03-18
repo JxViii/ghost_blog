@@ -25,8 +25,8 @@ export async function buildPostObject(){
     html: html,
     author: "JxViii",
     tags: tags,
-    slug: slug,
-    url: `/blog/${slug}`
+    slug: slug
+    // url: `/blog/${slug}`
   };
 
   return post;

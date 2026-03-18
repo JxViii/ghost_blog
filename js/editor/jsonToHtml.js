@@ -65,18 +65,20 @@ export default{
 
       switch (type) {
 
-        case "html" || "css" || "js": {
-          url = "/images/icons/terminal.png";
+        case "html":
+        case "css":
+        case "js":
+          url = "/icons/terminal.png";
           style="filter: invert()";
-        }
+        break;
         
-        case "pdf": {
-          url = "/images/icons/pdf.png";
-        }
+        case "pdf":
+          url = "/icons/pdf.png";
+        break;
 
-        case "xls": {
-          url = "/images/icons/xls.png";
-        }
+        case "xls":
+          url = "/icons/xls.png";
+        break;
 
       };
 
@@ -95,7 +97,7 @@ export default{
                     <div class="blog-post-file-hover">
                       Download
                     </div>
-                    <img src="/images/icons/download.png" alt="">
+                    <img src="/icons/download.png" alt="">
                   </div>
                 </div>
               </a>`

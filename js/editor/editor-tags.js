@@ -155,10 +155,7 @@ function setUpTagsDiv(){
 }
 
 const main = async () => {
-  // const tag = {
-  //   id: crypto.randomUUID(),
-  //   name: "test"
-  // }
+
   const posts = await getPosts();
   state.tags = getAllTagsF(posts);
   renderTags();

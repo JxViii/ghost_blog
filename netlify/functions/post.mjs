@@ -46,6 +46,7 @@ export default async (request, context) => {
         ...existing_post,
         ...body,
         id: existing_post.id,
+        url: `/blog/post?id=${id}`,
         created_at: existing_post.created_at,
         updated_at: new Date().toISOString(),
         published_at:

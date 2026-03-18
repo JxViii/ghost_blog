@@ -45,7 +45,6 @@ export default async (request, context) => {
           tags = [],
           status,
           slug,
-          url
         } = body;
 
 
@@ -72,7 +71,7 @@ export default async (request, context) => {
           id: id,
           title,
           slug,
-          url,
+          url: `/blog/post?id=${id}`,
           feature_image,
           excerpt,
           editor_data,

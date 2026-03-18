@@ -1,0 +1,4 @@
+[[redirects]]
+  from = "/blog/post"
+  to = "/blog/post.html"
+  status = 200
