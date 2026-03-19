@@ -60,24 +60,19 @@ export default{
     makeFile(obj) {
 
       const type = obj.data.file.extension;
-      let url = "/images/icons/doc.png";
-      let style="";
+      let url = "/icons/terminal.png";
+      let style="filter: invert()";
 
       switch (type) {
-
-        case "html":
-        case "css":
-        case "js":
-          url = "/icons/terminal.png";
-          style="filter: invert()";
-        break;
         
         case "pdf":
           url = "/icons/pdf.png";
+          style="";
         break;
 
         case "xls":
           url = "/icons/xls.png";
+          style="";
         break;
 
       };

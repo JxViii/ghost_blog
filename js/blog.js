@@ -68,8 +68,6 @@ function renderPosts() {
     return;
   }
 
-  visiblePosts.sort((a,b) => new Date(b.published_at) - new Date(a.published_at));
-
   const posts = visiblePosts.map(createPost).join("");
   postGrid.insertAdjacentHTML("beforeend", posts);
 }
@@ -123,6 +121,7 @@ function setUpPostURLS() {
 async function main() {
   try {
     const posts = await getPosts();
+    posts.sort((a,b) => new Date(b.published_at) - new Date(a.published_at));
     state.posts = Array.isArray(posts) ? posts : [];
     updateView();
   } catch (error) {
