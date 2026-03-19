@@ -40,6 +40,7 @@ const main = async () => {
     html
   } = post;
 
+  document.title = title;
   blogTitle.textContent = title;
   blogDate.textContent = getFullDate(published_at);
   blogAuthors.insertAdjacentHTML("beforeend",
