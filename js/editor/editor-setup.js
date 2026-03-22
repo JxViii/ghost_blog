@@ -1,5 +1,6 @@
 import { loadPost } from "./editor-actions.js";
-import { tagsReady } from "/js/editor/editor-tags.js"
+import { tagsReady, renderTags } from "/js/editor/editor-tags.js"
+import "/js/editor/editor-buttons.js"
 
 class GhostQuoteTool {
   static get toolbox() {
@@ -141,6 +142,11 @@ export const editor = new EditorJS({
   }
 });
 
+const main = async () => {
+  await tagsReady;
+  await loadPost();
+  renderTags();
+}
 
-await tagsReady;
-await loadPost();
+main();
+
