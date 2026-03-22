@@ -56,8 +56,8 @@ export function updateSaveState(status = "clear"){
     const statusCapitalized = status.charAt(0).toUpperCase() + status.slice(1);
     msg = `Saved - ${statusCapitalized}`;
   }
-  else{
-    msg = "What did you even sent here?";
+  else if("need-save"){
+    msg = "Save the post before previewing";
   }
 
   saveState.innerText = msg;
@@ -229,6 +229,23 @@ export async function handleDelete() {
   await clearPost();
   updateSaveState("clear");
   return deleted === 204;
+}
+
+export function handlePreview() {
+  
+  const postId = getIdURL();
+
+  if (!postId){
+    updateSaveState("need-save");
+    return null;
+  }
+
+  const url = `/blog/post?id=${postId}`
+
+  window.open(url, "_blank", "noopener,noreferrer");
+
+  return url;
+
 }
 
 /*

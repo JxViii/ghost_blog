@@ -1,6 +1,6 @@
 
 import { uploadFile } from "/js/api/cloudinary.js" 
-import { buildPostObject, savePost, handlePublish, handleSaveDraft, handleDelete, deleteFeatureImage } from "/js/editor/editor-actions.js";
+import { buildPostObject, savePost, handlePublish, handleSaveDraft, handleDelete, handlePreview, deleteFeatureImage } from "/js/editor/editor-actions.js";
 
 const bodyGrid = document.querySelector(".body-grid");
 const sideMenu = document.querySelector(".side-menu");
@@ -17,7 +17,19 @@ function setUpUIButtons(){
   setUpPostBlogButton();
   setUpSaveDraft();
   setUpDeletePostButton();
+  setUpPreviewButton();
 
+}
+
+async function setUpPreviewButton(){
+
+  const previewButton = document.getElementById("preview");
+
+  previewButton.addEventListener("click", () => {
+    const url = handlePreview();
+
+    (!url) ? console.log("This post isnt saved yet") : console.log("Preview running at ", url);
+  })
 }
 
 async function setUpDeletePostButton(){
