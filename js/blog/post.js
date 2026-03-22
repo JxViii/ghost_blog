@@ -42,7 +42,7 @@ const main = async () => {
 
   document.title = title;
   blogTitle.textContent = title;
-  blogDate.textContent = getFullDate(published_at);
+  blogDate.textContent = (published_at) ?getFullDate(published_at) : "Draft Preview";
   blogAuthors.insertAdjacentHTML("beforeend",
     `<h3 class="blog-header-author--item">${author}</h3>`
   )
