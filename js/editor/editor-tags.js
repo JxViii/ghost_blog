@@ -157,7 +157,8 @@ function setUpTagsDiv(){
 const main = async () => {
 
   const posts = await getPosts();
-  state.tags = getAllTagsF(posts);
+  state.tags = getAllTagsF(posts).sort((a, b) => a.name.localeCompare(b.name));
+  console.log(state.tags);
   renderTags();
   setUpTags();
 }

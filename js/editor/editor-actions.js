@@ -2,7 +2,7 @@ import { editor } from "/js/editor/editor-setup.js"
 import { getSlugFromTitle, getTagByName } from "/js/auxiliar.js"
 import { updatePost, uploadPost, deletePost, deleteAllPosts, getPostById } from "/js/api/blog-api.js";
 import { getTagsFromEditor, addTag, renderTags } from "/js/editor/editor-tags.js";
-import toHTML from "/js/editor/jsonToHTML.js"
+import toHTML from "/js/editor/jsonToHtml.js"
 
 export async function buildPostObject(){
 

@@ -52,7 +52,7 @@ export function getAllTagsF(v_posts){
   v_posts.forEach(post => {
 
     post.tags.forEach(tag => {
-      if( contains(tag.name, tags) === -1 )
+      if( containsObj(tag.name, tags) === -1 )
         tags.push(tag);
     })
 
@@ -94,6 +94,16 @@ export function contains(x, v){
 
   for(let i = 0; i<v.length; ++i){
     if(v[i] === x) return i;
+  }
+
+  return -1;
+
+}
+
+export function containsObj(x, v){
+
+  for(let i = 0; i<v.length; ++i){
+    if(v[i].name === x) return i;
   }
 
   return -1;

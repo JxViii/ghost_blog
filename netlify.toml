@@ -2,3 +2,8 @@
   from = "/blog/post"
   to = "/blog/post.html"
   status = 200
+
+[[headers]]
+for = "/js/*"
+[headers.values]
+  Content-Type = "application/javascript"

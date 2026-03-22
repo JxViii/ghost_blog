@@ -12,6 +12,7 @@
     "packageJson": {
       "dependencies": [
         "npm:@netlify/blobs@^10.7.1",
+        "npm:netlify@^24.4.0",
         "npm:uuid@13"
       ]
     }
