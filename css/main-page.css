@@ -126,6 +126,8 @@ header {
   backdrop-filter: blur(15px);
 
   border-bottom: 3px solid var(--light-grey2);
+
+  z-index: 3000;
 }
 
 header .logo{
