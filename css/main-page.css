@@ -655,6 +655,10 @@ header .pb-bar{
     font-size: 14px;
   }
 
+  .intro-grid{
+    height: 700dvh;
+  }
+
   /* INTRO */
   .intro-grid .intro-title h1 {
     font-size: 60px;
