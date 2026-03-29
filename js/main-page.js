@@ -19,6 +19,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const isMobile = window.innerWidth <= 480;
 
+  const isQuiteSmall = window.innerWidth <= 700;
+
   function initSectionTrack(){
 
     const sections = gsap.utils.toArray(document.querySelectorAll("section"));
@@ -120,7 +122,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const aboutTitle = aboutEl.querySelector("h2");
     const aboutCards = gsap.utils.toArray(aboutEl.querySelectorAll("p"));
 
-    if (isMobile) return;
+    if (isQuiteSmall) return;
 
     const tl = gsap.timeline({
       paused: true,
