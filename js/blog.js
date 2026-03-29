@@ -10,6 +10,7 @@ const state = {
 const postGrid = document.querySelector(".blog-grid");
 const pageInput = document.getElementById("blog-page");
 const nextButton = document.getElementById("blog-next");
+const prevButton = document.getElementById("blog-prev");
 
 function getTotalPages() {
   return Math.max(1, Math.ceil(state.posts.length / state.perPage));
@@ -74,11 +75,43 @@ function renderPosts() {
 
 // sync the pagination button
 function syncPaginationUI() {
+  
+
+  const lock = (el) => {
+    el.classList.add("locked");
+    el.disable = true;
+  }
+
+  const free = (el) => {
+    el.classList.remove("locked");
+    el.disable = false;
+  }
+
+  const isLocked = (el) => {
+    return el.classList.contains("locked");
+  }
+
+  const isLast = () => {
+    return state.page >= totalPages;
+  }
+
+  const isFirst = () => {
+    return state.page === 1;
+  }
+
   const totalPages = getTotalPages();
   pageInput.max = String(totalPages);
   pageInput.value = String(state.page);
   pageInput.placeholder = String(state.page);
-  nextButton.disabled = state.page >= totalPages;
+
+  if(isLast()) lock(nextButton);
+  if(isFirst()) lock(prevButton);
+
+  if(isLocked(nextButton) && !isLast())
+    free(nextButton);
+  if(isLocked(prevButton) && !isFirst())
+    free(prevButton)
+
 }
 
 function updateView() {
@@ -96,8 +129,13 @@ function goToNextPage() {
   goToPage(state.page + 1);
 }
 
+function goToPrevPage() {
+  goToPage(state.page - 1);
+}
+
 function setUpPagination() {
   nextButton.addEventListener("click", goToNextPage);
+  prevButton.addEventListener("click", goToPrevPage);
 
   pageInput.addEventListener("keydown", (event) => {
     if (event.key === "Enter") {
