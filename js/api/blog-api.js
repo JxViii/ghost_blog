@@ -42,7 +42,7 @@ export async function getPostById(id){
     return data.post;
 
   }catch(e){
-    console.error("Error fetching data", res.status);
+    console.error("Error fetching data", e);
     return;
   }
 

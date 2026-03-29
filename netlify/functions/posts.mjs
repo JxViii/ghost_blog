@@ -5,9 +5,9 @@ export const config = {
   path: "/api/posts",
 };
 
-const uploads = getStore("posts");
-
 export default async (request, context) => {
+
+  const uploads = getStore("posts");
 
   switch(request.method) {
 
