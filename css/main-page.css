@@ -648,7 +648,7 @@ header .pb-bar{
     font-size: 20px;
     line-height: 2;
 
-    padding: 30px 40px;
+    padding: 25px 30px;
     outline: 2px solid var(--color-accent);
 
     position: absolute;
