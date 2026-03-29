@@ -125,7 +125,7 @@ header {
   -webkit-backdrop-filter: blur(15px);
   backdrop-filter: blur(15px);
 
-  border: 3px solid var(--light-grey2);
+  border-bottom: 3px solid var(--light-grey2);
 }
 
 header .logo{
@@ -656,7 +656,7 @@ header .pb-bar{
   }
 
   .intro-grid{
-    height: 700dvh;
+    height: 750dvh;
   }
 
   /* INTRO */
