@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Editor</title>
+  <title>BLOG : Editor</title>
   <link rel="icon" href="/icons/website.png">
 
 </head>
@@ -83,10 +83,20 @@
           <svg viewBox="0 0 24 24" fill="none">
             <path d="M13.4 10.6c2 2 2 5.1 0 7.1l-2.8 2.8c-2 2-5.1 2-7.1 0s-2-5.1 0-7.1L6 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M10.6 13.4c-2-2-2-5.1 0-7.1l2.8-2.8c2-2 5.1-2 7.1 0s2 5.1 0 7.1L18 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
           </svg>
-          <input type="text" name="post-url" id="side-menu-tags">
+          <input type="text" name="post-url">
         </div>
         <div class="url-preview">jxviiiblog.netlify.app/blog/</div>
       </div>
+
+      <div class="side-menu-item">
+        <div class="side-menu-date">
+          <label for="set-date">Date</label>
+          <input type="date" name="set-date" id="set-date">
+          <input type="time" name="set-time" id="set-time">
+        </div>
+        <span>By default it is set to the publish date</span>
+      </div>
+
       <div class="side-menu-item">
         <label for="side-menu-tags">Tags</label>
         <div class="selected-tag-wrapper">
