@@ -1,5 +1,5 @@
 import { getPosts } from "./api/blog-api.js";
-import { getDate, getTags } from "./auxiliar.js";
+import { getDate, getTags, getExpDate } from "./auxiliar.js";
 
 const state = {
   posts: [],
@@ -32,7 +32,7 @@ function clearBlog() {
 }
 
 function createPost(post) {
-  const dateTag = getDate(post);
+  const dateTag = getExpDate(post);
   const tagsMarkup = getTags(post.tags)
     .map(
       (tag) => `

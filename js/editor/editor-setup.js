@@ -143,6 +143,7 @@ export const editor = new EditorJS({
 });
 
 const main = async () => {
+
   await tagsReady;
   await loadPost();
   renderTags();

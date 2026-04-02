@@ -1,5 +1,5 @@
 import { editor } from "/js/editor/editor-setup.js"
-import { getSlugFromTitle, getTagByName } from "/js/auxiliar.js"
+import { getSlugFromTitle, getTagByName, dateToIsoDate, isoDateToDate } from "/js/auxiliar.js"
 import { updatePost, uploadPost, deletePost, deleteAllPosts, getPostById } from "/js/api/blog-api.js";
 import { getTagsFromEditor, addTag, renderTags } from "/js/editor/editor-tags.js";
 import toHTML from "/js/editor/jsonToHtml.js"
@@ -12,6 +12,9 @@ export async function buildPostObject(){
   const slug = getSlugFromTitle(title);
   const editorData = await editor.save();
   const tags = getTagsFromEditor();
+  const date = document.getElementById("set-date");
+  const time = document.getElementById("set-time");
+  const expDate = dateToIsoDate(date, time);
 
   const { blocks } = editorData;
 
@@ -25,9 +28,16 @@ export async function buildPostObject(){
     html: html,
     author: "JxViii",
     tags: tags,
+    experience_date: expDate,
     slug: slug
     // url: `/blog/${slug}`
   };
+
+  if( !date.value ){
+      date.value = isoDateToDate(expDate).date;
+      time.value = isoDateToDate(expDate).time;
+  }
+
 
   return post;
 
@@ -120,7 +130,8 @@ export async function loadPost(){
           feature_image,
           editor_data,
           excerpt,
-          tags
+          tags,
+          experience_date
   } = post;
 
   const titleElement = document.getElementById("editor-title");
@@ -169,6 +180,11 @@ export async function loadPost(){
     await editor.isReady;
     await editor.render(editor_data);
   }
+
+  const date = document.getElementById("set-date");
+  const time = document.getElementById("set-time");
+  const revert = isoDateToDate(experience_date);
+  date.value = revert.date ; time.value = revert.time;
 
 }
 

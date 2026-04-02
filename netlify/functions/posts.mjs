@@ -45,6 +45,7 @@ export default async (request, context) => {
           tags = [],
           status,
           slug,
+          experience_date,
         } = body;
 
 
@@ -79,6 +80,7 @@ export default async (request, context) => {
           author,
           tags,
           status,
+          experience_date: experience_date,
           created_at: now,
           updated_at: now,
           published_at: status === "published" ? now : null

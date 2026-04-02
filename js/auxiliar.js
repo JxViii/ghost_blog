@@ -26,6 +26,23 @@ export function getDate(post){
   return date_tag;
 }
 
+export function getExpDate(post){
+
+  if(!post.experience_date) return "Not a date alr";
+
+  const post_time = post.experience_date?.split('T');
+  const date = post_time[0].split('-');
+  const day = parseInt(date[2]);
+  const month = getMonth(parseInt(date[1]));
+  if(month === -1){
+    console.error("Invalid Month");
+    return;
+  }
+  const date_tag = `${day} ${month}`;
+
+  return date_tag;
+}
+
 export function getTagByID(v_tags, id) {
   return v_tags.find(tag => tag.id === id) ?? null;
 }
@@ -116,4 +133,33 @@ export function getSlugFromTitle(title){
               .replace(/\s+/g, "-") //Replaces whitespace characters for -
               .replace(/[^\w-]/g, ""); //Deletes anything that isnt a word character
           
+}
+
+export function dateToIsoDate(date, time) {
+
+  let isoDate = ""
+
+  if( !date.value ) {
+    return new Date().toISOString(); 
+  }
+
+  isoDate = `${date.value}T${time.value ? time.value : "00:00"}:00.000Z`
+
+  return isoDate;
+}
+
+
+export function isoDateToDate(isoDate) {
+
+  if (!isoDate) return { date: "", time: "" };
+
+  console.log("prev", isoDate);
+
+  const dt = new Date(isoDate);
+  const date = dt.toISOString().split("T")[0];
+  const hours = String(dt.getUTCHours()).padStart(2, "0");
+  const minutes = String(dt.getUTCMinutes()).padStart(2, "0");
+  const time = `${hours}:${minutes}`;
+
+  return { date, time };
 }
