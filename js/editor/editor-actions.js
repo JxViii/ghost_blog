@@ -33,9 +33,9 @@ export async function buildPostObject(){
     // url: `/blog/${slug}`
   };
 
-  if( !date.value ){
-      date.value = isoDateToDate(expDate).date;
-      time.value = isoDateToDate(expDate).time;
+  if( !date.value || !time.value ){
+    date.value = isoDateToDate(expDate).date;
+    time.value = isoDateToDate(expDate).time;
   }
 
 

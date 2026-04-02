@@ -159,7 +159,7 @@ function setUpPostURLS() {
 async function main() {
   try {
     const posts = await getPosts();
-    posts.sort((a,b) => new Date(b.published_at) - new Date(a.published_at));
+    posts.sort((a,b) => new Date(b.experience_date) - new Date(a.experience_date));
     state.posts = Array.isArray(posts) ? posts : [];
     updateView();
   } catch (error) {
