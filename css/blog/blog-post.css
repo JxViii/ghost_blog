@@ -316,7 +316,7 @@ li.blog-post-li{
 }
 
 .blog-post-image-caption{
-  border: 1px solid var(--white);
+  border: none;
   padding: 5px 0px;
   width: var(--width-img);
   margin: 0 auto;
