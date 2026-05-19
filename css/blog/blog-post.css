@@ -593,5 +593,38 @@ li.blog-post-li{
     font-size: 18px;
   }
 
+  .blog-post-file-grid{
+
+    padding: 7px 12px;
+    border-width: 1px;
+
+  }
+
+  .blog-post-file-icon{
+    display: grid;
+    place-items: center;
+  }
+
+  .blog-post-file-grid img {
+
+    height: 25px;
+
+  }
+
+  h3.blog-post-file-title{
+    font-size: 13px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  .blog-post-file-size{
+    font-size: 13px;
+  }
+
+  .blog-post-file-download{
+    display: none;
+  }
+
 
 }
