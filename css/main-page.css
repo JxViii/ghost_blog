@@ -194,7 +194,7 @@ header .pb-bar {
 
 .intro-grid {
 
-  height: 600dvh;
+  min-height: 100dvh;
 
   display: flex;
   flex-direction: column;
@@ -204,8 +204,11 @@ header .pb-bar {
 
 .intro-grid .intro-title {
 
+  min-height: 100dvh;
+
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: 10px;
 
 }
@@ -232,7 +235,8 @@ header .pb-bar {
 
 .about {
 
-  height: 1100dvh;
+  min-height: 100dvh;
+  margin-bottom: 300px;
 
 }
 
@@ -240,8 +244,11 @@ header .pb-bar {
   --color-accent: var(--hl-green);
 
   display: grid;
+  min-height: 100dvh;
+
   grid-template-columns: repeat(8, 1fr);
   grid-template-rows: repeat(8, 60px);
+  align-content: center;
   padding: 2rem;
 }
 
@@ -1269,7 +1276,7 @@ header .pb-bar {
 
   .about {
     overflow: hidden;
-    height: 200dvh;
+    min-height: 100dvh;
   }
 
   .about-wrapper {
@@ -1440,7 +1447,7 @@ header .pb-bar {
   }
 
   .intro-grid {
-    height: 750dvh;
+    min-height: 100dvh;
   }
 
   /* INTRO */

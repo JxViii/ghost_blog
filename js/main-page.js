@@ -69,21 +69,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }
 
-    gsap.to(state, {
-      progress: 100,
-      scrollTrigger: {
-        trigger: "body",
-        start: "top 0%",
-        end: "bottom 100%",
-        scrub: true,
-        onUpdate: (self) => render(),
-      }
-    })
+    const update = () => {
+
+      const doc = document.documentElement;
+      const max = Math.max(1, doc.scrollHeight - window.innerHeight);
+
+      state.progress = gsap.utils.clamp(0, 100, (window.scrollY / max) * 100);
+      render();
+
+    }
+
+    lenis.on('scroll', update);
+    ScrollTrigger.addEventListener("refresh", update);
+    window.addEventListener("resize", update);
+    window.addEventListener("load", () => ScrollTrigger.refresh());
+
+    update();
 
   }
 
   function initIntroScroll(){
 
+    const introSection = document.querySelector(".intro");
     const introTitleEl = document.querySelector(".intro-title");
     const introShow = introTitleEl.querySelector("h2");
     const titles = gsap.utils.toArray(document.querySelectorAll(".intro-title h1 span"));
@@ -91,11 +98,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const tl = gsap.timeline({
       paused: true,
       scrollTrigger: {
-        trigger: introTitleEl,
-        start: "center center",
-        end: "+=5000",
+        trigger: introSection,
+        pin: introSection,
+        start: "top top",
+        end: "+=2500",
         scrub: 1,
-        pin: true,
+        refreshPriority: 1,
       }
     })
 
@@ -118,6 +126,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function initAboutScroll(){
 
+    const aboutSection = document.querySelector(".about");
     const aboutEl = document.querySelector(".about-wrapper");
     const aboutTitle = aboutEl.querySelector("h2");
     const aboutCards = gsap.utils.toArray(aboutEl.querySelectorAll("p"));
@@ -127,11 +136,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const tl = gsap.timeline({
       paused: true,
       scrollTrigger: {
-        trigger: aboutEl,
-        start: "center center",
-        end: "+=10000",
+        trigger: aboutSection,
+        pin: aboutSection,
+        start: "top top",
+        end: "+=5000",
         scrub: 1,
-        pin: true,
+        refreshPriority: 1,
       }
     })
 
@@ -172,9 +182,11 @@ document.addEventListener("DOMContentLoaded", () => {
     tl.to(aboutEl, { duration: 5 });
   }
 
-  initSectionTrack();
-  initWebsiteBar();
   initIntroScroll();
   initAboutScroll();
+  initSectionTrack();
+  initWebsiteBar();
+
+  ScrollTrigger.refresh();
 
 })
