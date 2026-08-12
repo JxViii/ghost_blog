@@ -1124,7 +1124,7 @@ header .pb-bar {
       var(--black));
   filter: opacity(.5);
   border-radius: 10px;
-  outline: 3px solid transparent;
+  outline: 2px solid transparent;
 
   text-align: left;
   text-decoration: none;
@@ -1136,7 +1136,7 @@ header .pb-bar {
 
 .wr-sheet-grid .wr-sheet:hover {
   outline-color: var(--color-accent);
-  transform: translateY(-5px);
+  transform: translateY(-7px);
   filter: opacity(1);
 }
 
