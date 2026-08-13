@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const isQuiteSmall = window.innerWidth <= 700;
 
-  function initSectionTrack(){
+  function initSectionTrack() {
 
     const sections = gsap.utils.toArray(document.querySelectorAll("section"));
 
@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
     })
   }
 
-  function initWebsiteBar(){
+  function initWebsiteBar() {
 
     const header = document.querySelector("header");
     const pb = document.getElementById("pb");
@@ -55,8 +55,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const colorHeader = () => {
 
-      if(state.progress <= 33) header.style.setProperty('--color-accent', "var(--hl-cyan)");
-      else if(state.progress <= 67) header.style.setProperty('--color-accent', "var(--hl-green)");
+      if (state.progress <= 33) header.style.setProperty('--color-accent', "var(--hl-cyan)");
+      else if (state.progress <= 67) header.style.setProperty('--color-accent', "var(--hl-green)");
       else header.style.setProperty('--color-accent', "var(--hl-pink)");
 
     }
@@ -88,7 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   }
 
-  function initIntroScroll(){
+  function initIntroScroll() {
 
     const introSection = document.querySelector(".intro");
     const introTitleEl = document.querySelector(".intro-title");
@@ -107,10 +107,10 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     })
 
-    tl.to(introTitleEl, {duration: 4});
+    tl.to(introTitleEl, { duration: 4 });
 
-    titles.forEach( (title, i) => {
-      tl.to( title, {
+    titles.forEach((title, i) => {
+      tl.to(title, {
         x: (i % 2 === 0) ? -800 : 800,
         opacity: 0,
         duration: 7,
@@ -118,13 +118,13 @@ document.addEventListener("DOMContentLoaded", () => {
       })
     });
 
-    tl.to(introShow, {y: isMobile ? -100 : -200, scale: 1.5, duration: 3})
+    tl.to(introShow, { y: isMobile ? -100 : -200, scale: 1.5, duration: 3 })
     tl.to(introShow, { duration: 10 });
-    tl.to(introShow, { opacity: 0, duration: 2});
+    tl.to(introShow, { opacity: 0, duration: 2 });
     tl.to(introShow, { duration: 3 });
   }
 
-  function initAboutScroll(){
+  function initAboutScroll() {
 
     const aboutSection = document.querySelector(".about");
     const aboutEl = document.querySelector(".about-wrapper");
@@ -145,7 +145,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     })
 
-    tl.to(aboutEl, {duration: 2});
+    tl.to(aboutEl, { duration: 2 });
 
     tl.from(aboutTitle, {
       x: -200,
@@ -159,13 +159,22 @@ document.addEventListener("DOMContentLoaded", () => {
       "var(--hl-pink)"
     ]
 
-    aboutCards.forEach( (card, i) => {
+    const COLORS_ABOUT_DESC = [
+      "var(--dl-green)",
+      "var(--dl-cyan)",
+      "var(--dl-pink)"
+    ]
 
-      tl.from( card, {
+    aboutCards.forEach((card, i) => {
+
+      tl.from(card, {
         x: 400,
         opacity: 0,
         duration: 15,
-        onUpdate: (self) => aboutEl.style.setProperty("--color-accent", `${COLORS_ABOUT[i]}`)
+        onUpdate: (self) => {
+          aboutEl.style.setProperty("--color-accent", `${COLORS_ABOUT[i]}`);
+          aboutEl.style.setProperty("--about-color", `${COLORS_ABOUT_DESC[i]}`);
+        }
       })
 
       tl.to(card, { duration: 25 })
@@ -174,11 +183,14 @@ document.addEventListener("DOMContentLoaded", () => {
         y: 50,
         opacity: 0,
         duration: 8,
-        onUpdate: (self) => aboutEl.style.setProperty("--color-accent", `${COLORS_ABOUT[i]}`)
+        onUpdate: (self) => {
+          aboutEl.style.setProperty("--color-accent", `${COLORS_ABOUT[i]}`);
+          aboutEl.style.setProperty("--about-color", `${COLORS_ABOUT_DESC[i]}`);
+        }
       })
     });
 
-    tl.to(aboutTitle, { x: -200, opacity: 0 , duration: 10});
+    tl.to(aboutTitle, { x: -200, opacity: 0, duration: 10 });
     tl.to(aboutEl, { duration: 5 });
   }
 

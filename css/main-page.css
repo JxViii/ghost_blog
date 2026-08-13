@@ -18,6 +18,9 @@
   --hl-cyan: #00cfcf;
   --hl-green: #c8ff00;
   --hl-pink: #ff00a6;
+  --dl-cyan: #003131;
+  --dl-green: #323f00;
+  --dl-pink: #3e0029;
   --hl-amber: #ffc400;
 }
 
@@ -104,6 +107,18 @@ b.g {
 
 b.p {
   --color-accent: var(--hl-pink);
+}
+
+b.dc {
+  --color-accent: var(--dl-cyan);
+}
+
+b.dg {
+  --color-accent: var(--dl-green);
+}
+
+b.dp {
+  --color-accent: var(--dl-pink);
 }
 
 b.amber {
@@ -241,6 +256,7 @@ header .pb-bar {
 }
 
 .about-wrapper {
+  --about-color: var(--dl-green);
   --color-accent: var(--hl-green);
 
   display: grid;
@@ -276,16 +292,58 @@ header .pb-bar {
 
 .about-wrapper .intro-desc p {
 
-  padding: 30px 60px;
-  outline: 2px solid var(--color-accent);
+  --notch: 18px;
+
+  /* staircase steps: one notch, two notches */
+  --n1: var(--notch);
+  --n2: calc(var(--notch) * 2);
+
+  --r1: calc(100% - var(--n1));
+  --r2: calc(100% - var(--n2));
+
+  padding: 50px 70px;
 
   position: absolute;
   width: 600px;
 
+  background: var(--color-accent);
+  color: var(--black);
+
+  clip-path: polygon(
+    /* top left */
+    0 var(--n2),
+    var(--n1) var(--n2),
+    var(--n1) var(--n1),
+    var(--n2) var(--n1),
+    var(--n2) 0,
+    /* top right */
+    var(--r2) 0,
+    var(--r2) var(--n1),
+    var(--r1) var(--n1),
+    var(--r1) var(--n2),
+    100% var(--n2),
+    /* bottom right */
+    100% var(--r2),
+    var(--r1) var(--r2),
+    var(--r1) var(--r1),
+    var(--r2) var(--r1),
+    var(--r2) 100%,
+    /* bottom left */
+    var(--n2) 100%,
+    var(--n2) var(--r1),
+    var(--n1) var(--r1),
+    var(--n1) var(--r2),
+    0 var(--r2)
+  );
+
 }
 
 .about-wrapper .intro-desc p b {
-  font-weight: bold;
+  font-weight: 800;
+  /* text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 6px; */
+  color: var(--about-color);
 }
 
 /* STANDARD SECTION ( title + season ) */
@@ -1174,11 +1232,12 @@ header .pb-bar {
 
   .about-wrapper .intro-desc p {
 
+    --notch: 14px;
+
     font-size: 20px;
     line-height: 2;
 
-    padding: 25px 30px;
-    outline: 2px solid var(--color-accent);
+    padding: 38px 44px;
 
     position: absolute;
     width: 350px;
@@ -1307,15 +1366,19 @@ header .pb-bar {
     width: 100%;
     font-size: 18px;
     line-height: 1.7;
-    padding: 20px;
+
+    --notch: 11px;
+    padding: 32px 28px;
     opacity: 1;
 
     &:nth-child(2) {
       --color-accent: var(--hl-cyan);
+      --about-color: var(--dl-cyan);
     }
 
     &:nth-child(3) {
       --color-accent: var(--hl-pink);
+      --about-color: var(--dl-pink);
     }
   }
 
