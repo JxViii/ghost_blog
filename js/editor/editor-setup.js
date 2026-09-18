@@ -1,6 +1,7 @@
 import { loadPost } from "./editor-actions.js";
 import { tagsReady, renderTags } from "/js/editor/editor-tags.js"
 import "/js/editor/editor-buttons.js"
+import { watchWordCount, syncWordCount } from "/js/editor/word-count.js"
 
 class GhostQuoteTool {
   static get toolbox() {
@@ -52,6 +53,9 @@ function replaceToolbarSVG(){
   `
 
 }
+
+// Set once the editor is ready; onChange can fire before watchWordCount() returns.
+let onChange = null;
 
 export const editor = new EditorJS({
   holder: "editorjs",
@@ -119,8 +123,10 @@ export const editor = new EditorJS({
       }
     }
   },
+  onChange: (api, event) => onChange?.(api, event),
   onReady: () => {
     replaceToolbarSVG();
+    onChange = watchWordCount(editor);
     document.querySelector(".codex-editor").setAttribute("spellcheck", "false");
 
     let lastState = null;
@@ -130,12 +136,14 @@ export const editor = new EditorJS({
         e.stopPropagation();
         lastState = await editor.save();
         await editor.clear();
+        await syncWordCount(editor);
       }
     });
 
     document.addEventListener("keydown", async (e) => {
       if ( (e.key === 'z' || e.key === 'Z') && (navigator.platform.match('Mac') ? e.metaKey : e.ctrlKey) && lastState){
         await editor.render(lastState);
+        await syncWordCount(editor);
         lastState = null;
       }
     })
@@ -146,6 +154,7 @@ const main = async () => {
 
   await tagsReady;
   await loadPost();
+  await syncWordCount(editor);
   renderTags();
 }
 

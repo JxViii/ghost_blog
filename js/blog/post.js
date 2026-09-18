@@ -1,5 +1,6 @@
 import { getPostById } from "/js/api/blog-api.js";
 import { getMonth } from "/js/auxiliar.js"
+import { countRendered, formatReadingTime } from "/js/word-count.js"
 
 const blogTitle = document.querySelector(".blog-header-title");
 const blogFeatureImg = document.querySelector(".blog-header-feature-image");
@@ -8,6 +9,7 @@ const blogAuthors = document.querySelector(".blog-header-authors");
 const blogExcerpt = document.querySelector(".blog-header-excerpt");
 const blogTags = document.querySelector(".blog-header-tags");
 const blogContent = document.querySelector(".blog-content");
+const blogReadingTime = document.querySelector(".blog-header-reading-time");
 
 
 const getFullDate = (isoString) => {
@@ -52,6 +54,7 @@ const main = async () => {
   ).join(""));
   blogFeatureImg.style.setProperty("--img", `url(${feature_image})`);
   blogContent.innerHTML = html;
+  blogReadingTime.textContent = formatReadingTime(countRendered(blogContent));
 
 }
 

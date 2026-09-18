@@ -12,3 +12,11 @@ footer{
   margin-right: 60px;
 
 }
+
+.word-count{
+
+  font-size: 14px;
+  opacity: 0.8;
+  user-select: none;
+  white-space: nowrap;
+}
