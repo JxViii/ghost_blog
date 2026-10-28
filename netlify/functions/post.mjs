@@ -1,4 +1,5 @@
 import { getStore } from "@netlify/blobs";
+import { getSession, requireRole, noStore } from "../lib/auth.mjs";
 
 export const config = {
   // This makes the function run on /api/post
@@ -8,6 +9,10 @@ export const config = {
 export default async (request, context) => {
 
   const uploads = getStore("posts");
+
+  // Reading needs any valid session, writing needs the admin one
+  const denied = await requireRole(request, request.method === "GET" ? "reader" : "admin");
+  if(denied) return denied;
 
   const url = new URL(request.url);
   const id = url.searchParams.get("id");
@@ -23,13 +28,15 @@ export default async (request, context) => {
     case "GET": {
 
       const post = await uploads.get(id, {type: "json"});
-      if(post === null) return Response.json({
-        error: "Post not found",
-        status: 404
-      })
+      const session = await getSession(request);
+      if(post === null || (post.status !== "published" && session.role !== "admin"))
+        return Response.json({
+          error: "Post not found",
+          status: 404
+        }, { status: 404, headers: noStore })
       return Response.json(
         { post },
-        { status: 200 }
+        { status: 200, headers: noStore }
       )
 
     }

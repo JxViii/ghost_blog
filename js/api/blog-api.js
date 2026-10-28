@@ -1,3 +1,14 @@
+import { goToLogin } from "/js/api/auth.js";
+
+// 401 = not logged in, 403 = logged in without enough access
+function checkAuth(res){
+  if(res.status === 401 || res.status === 403){
+    goToLogin();
+    return false;
+  }
+  return true;
+}
+
 export async function getPosts() {
 
   // Todos los posts
@@ -32,6 +43,8 @@ export async function getPostById(id){
 
     const res = await fetch(`/api/post?id=${id}`)
 
+    if(!checkAuth(res)) return;
+
     if(!res.ok){
       console.error("Error fetching data", res.status);
       return;
@@ -64,6 +77,8 @@ export async function uploadPost(post){
       },
       body: JSON.stringify(post)
     })
+
+    if(!checkAuth(res)) return;
 
     if(!res.ok){
       console.error("There was an issue posting this entry", res.status);
@@ -103,6 +118,8 @@ export async function updatePost(post){
       body: JSON.stringify(post)
     })
 
+    if(!checkAuth(res)) return;
+
     if(!res.ok){
       console.error("There was an issue updating this entry", res.status);
       return;
@@ -137,6 +154,8 @@ export async function deletePost(post){
       method: "DELETE"
     })
 
+    if(!checkAuth(res)) return;
+
     if(!res.ok){
       console.error("There was an issue deleting this entry", res.status);
       return;
@@ -158,6 +177,8 @@ export async function deleteAllPosts(){
     const res = await fetch(`/api/posts`, {
       method: "DELETE"
     })
+
+    if(!checkAuth(res)) return;
 
     if(!res.ok){
       console.error("Couldn't delete all posts", res.status);

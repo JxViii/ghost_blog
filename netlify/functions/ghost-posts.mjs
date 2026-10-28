@@ -10,7 +10,7 @@ export default async (request, context) => {
 
     if(!res.ok){
       return Response.json(
-        {error: `Failed fetching data ${GHOST_API_KEY}`}, {status: res.status}
+        {error: "Failed fetching data"}, {status: res.status}
       );
     }
     

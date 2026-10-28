@@ -1,31 +1,45 @@
 import { getStore } from "@netlify/blobs";
+import { getSession, requireRole, noStore } from "../lib/auth.mjs";
 
 export const config = {
   // This makes the function run on /api/posts
   path: "/api/posts",
 };
 
+// Card data shown to everyone, everything except the content itself
+const toCard = ({ editor_data, html, url, ...card }) => card;
+
 export default async (request, context) => {
 
   const uploads = getStore("posts");
 
+  if(request.method !== "GET"){
+    const denied = await requireRole(request, "admin");
+    if(denied) return denied;
+  }
+
   switch(request.method) {
 
     case "GET": {
+
+      const session = await getSession(request);
+      const isAdmin = session?.role === "admin";
 
       const { blobs } = await uploads.list();
       const posts = [];
       
       for(const { key } of blobs) {
         const post = await uploads.get(key, {type: "json"});
-        if( post ) 
-          posts.push(post);
+        if( !post ) continue;
+        // Drafts are only visible to the admin
+        if( !isAdmin && post.status !== "published" ) continue;
+        posts.push(session ? { ...toCard(post), url: post.url } : toCard(post));
       }
 
       return Response.json({
         posts,
         status: 200
-      })
+      }, { headers: noStore })
 
     }
 

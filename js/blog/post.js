@@ -32,6 +32,9 @@ const main = async () => {
   }
 
   const post = await getPostById(id);
+  // Without access getPostById already sends the user to the login page
+  if(!post) return;
+
   const {
     title,
     excerpt,

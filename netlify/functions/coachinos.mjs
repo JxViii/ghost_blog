@@ -1,5 +1,3 @@
-//* https://www.googleapis.com/drive/v3/files?q='1L_ba5Uinxhb447Hd2bIQmFoD-5LWb6p9'+in+parents&fields=files(id,name,webViewLink)&key=AIzaSyAY-KuUygZBlxLvQEd7pzEWLMVCb13FSQE
-
 export default async (request, context) => {
 
   const GOOGLE_API_KEY = Netlify.env.get("GOOGLE_API_KEY");

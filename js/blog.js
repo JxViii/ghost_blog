@@ -1,11 +1,15 @@
 import { getPosts } from "./api/blog-api.js";
 import { getDate, getTags, getExpDate } from "./auxiliar.js";
+import { getSession, logout } from "./api/auth.js";
 
 const state = {
   posts: [],
   page: 1,
   perPage: 6,
+  role: null,
 };
+
+const hasAccess = () => state.role !== null;
 
 const postGrid = document.querySelector(".blog-grid");
 const pageInput = document.getElementById("blog-page");
@@ -42,8 +46,12 @@ function createPost(post) {
     )
     .join("");
 
+  // Without access the card is only a showcase, it has no link
+  const locked = !hasAccess() || !post.url;
+  const link = locked ? "" : `data-url="${post.url}"`;
+
   return `
-    <article class="blog-item" data-url="${post.url}" style="--bg: url(${post.feature_image})">
+    <article class="blog-item${locked ? " locked" : ""}" ${link} style="--bg: url(${post.feature_image})">
       <div class="main-image">
         <div class="date-tag">
           <h3>${dateTag}</h3>
@@ -147,7 +155,7 @@ function setUpPagination() {
 function setUpPostURLS() {
   postGrid.addEventListener("click", (event) => {
     const postItem = event.target.closest(".blog-item");
-    if (!postItem) return;
+    if (!postItem || postItem.classList.contains("locked")) return;
 
     const { url } = postItem.dataset;
     if (!url) return;
@@ -156,11 +164,31 @@ function setUpPostURLS() {
   });
 }
 
+function setUpAccessButton() {
+  const button = document.getElementById("blog-access");
+
+  if (hasAccess()) {
+    button.textContent = "Log out";
+    button.addEventListener("click", async () => {
+      await logout();
+      window.location.reload();
+    });
+  } else {
+    button.textContent = "Unlock posts";
+    button.addEventListener("click", () => {
+      window.location.href = `/login.html?next=${encodeURIComponent("/#blog")}`;
+    });
+  }
+}
+
 async function main() {
   try {
-    const posts = await getPosts();
-    posts.sort((a,b) => new Date(b.experience_date) - new Date(a.experience_date));
-    state.posts = Array.isArray(posts) ? posts : [];
+    const [posts, session] = await Promise.all([getPosts(), getSession()]);
+    state.role = session.role;
+    setUpAccessButton();
+    // The admin also receives drafts, the gallery only shows published posts
+    state.posts = Array.isArray(posts) ? posts.filter((post) => post.status === "published") : [];
+    state.posts.sort((a,b) => new Date(b.experience_date) - new Date(a.experience_date));
     updateView();
   } catch (error) {
     console.error("Could not initialize blog:", error);

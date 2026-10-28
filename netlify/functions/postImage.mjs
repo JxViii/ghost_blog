@@ -1,4 +1,9 @@
+import { requireRole } from "../lib/auth.mjs";
+
 export default async (request, context) => {
+
+  const denied = await requireRole(request, "admin");
+  if(denied) return denied;
 
   const CLOUDINARY_URL = "https://api.cloudinary.com/v1_1/drowmvgkm/upload";
   const CLOUDINARY_UPLOAD_PRESET = "jxviii_blog";
